@@ -47,7 +47,7 @@ class TitleHeader extends Component {
       <HeaderContainer titleHeader={this.props.titleHeader}>    
         Cartographers of North Korea &nbsp;<span className="ko">북한의 지도 제작자</span>
         <DateArea>
-          January 5th, 2018  ·  Wonyoung So
+          May 12th, 2019  ·  Wonyoung So
         </DateArea>
       </HeaderContainer>
     )

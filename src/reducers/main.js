@@ -8,7 +8,6 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
-      break;
     case "CHANGE_MAP_LOADED":
       return {
         ...state,
@@ -142,6 +141,8 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         currentFeature: action.payload.currentFeature,
         legend: true
       }
+    default:
+      break;
   }
 
   return state;

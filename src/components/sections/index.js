@@ -5,6 +5,7 @@ import SectionThird from './SectionThird';
 import SectionFourth from './SectionFourth';
 import SectionFifth from './SectionFifth';
 import SectionOddPOIs from './SectionOddPOIs';
+import SectionText from './SectionText';
 
 export {
   Intro,
@@ -13,5 +14,6 @@ export {
   SectionThird,
   SectionFourth,
   SectionFifth,
-  SectionOddPOIs
+  SectionOddPOIs,
+  SectionText
 };

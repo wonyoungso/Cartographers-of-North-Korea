@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MapContainer, ContributorInfo, CenterMarker, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
-import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor} from '../actions';
+import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, initTextVisualization} from '../actions';
 import { dispatchToGlobal, randomBetween } from '../utils';
 import loadSequence from '../constants/nk_osm_seq.json';
 import axios from 'axios';
 import 'intersection-observer';
 import scrollama from 'scrollama';
-import { Intro, SectionFirst, SectionSecond, SectionThird, SectionFourth, SectionFifth, SectionOddPOIs } from '../components/sections';
+import { Intro, SectionFirst, SectionSecond, SectionThird, SectionFourth, SectionFifth, SectionOddPOIs, SectionText } from '../components/sections';
 import { HeaderContainer } from '../components';
 import _ from 'lodash';
 import interestingPOIs from '../constants/interesting_pois.json';
-import { buildStyleProperty } from 'stylefire';
 import { scaleLinear } from 'd3';
 
 const Fragment = React.Fragment;
@@ -75,7 +74,7 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    if (prevProps.mapLoaded != this.props.mapLoaded && this.props.mapLoaded) {
+    if (prevProps.mapLoaded !== this.props.mapLoaded && this.props.mapLoaded) {
 
 
         this.scroller = scrollama();
@@ -112,7 +111,7 @@ class Home extends Component {
 
   handleStepProgress(e){
     let actionName = e.element.dataset.actionName;
-    if (actionName == "changeChronicleMap") {
+    if (actionName === "changeChronicleMap") {
       
       this.props.dispatch(changeCurrentTimeStamp(this.timeScale(e.progress)));
 
@@ -177,6 +176,10 @@ class Home extends Component {
         case 'changeWorldMapHeaviestContributor':
           this.props.dispatch(changeWorldMapHeaviestContributor());
           break;
+        case 'initTextVisualization':
+          this.props.dispatch(initTextVisualization());
+        default: 
+          break;
       }
 
       
@@ -209,6 +212,8 @@ class Home extends Component {
             }));
           }
           break;
+        default: 
+          break;
       }
 
 
@@ -227,11 +232,13 @@ class Home extends Component {
           <SectionOddPOIs />
           <SectionThird />
           <SectionFourth />
+          <SectionText />
           <SectionFifth />
         </div>
         <TimelineScroller />
         <TitleHeader />
         <CholoplethLegend />
+        <TextVisualization />
         <MapContainer />
       </Fragment>
     );
