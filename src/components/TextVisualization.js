@@ -7,11 +7,9 @@ import _ from 'lodash';
 import { SUBCATEGORY_SELECT } from '../constants/defaults';
 
 const GridBox = styled.div`
-  width: calc(100% - 250px);
-  display: grid;
-  grid-gap: 10px;
-  grid-auto-flow: column dense;
-  grid-template-columns: 20% 20% 20% 20%;
+  column-count: 8;
+  column-gap: 1em;
+  width: calc(100% -20px);
 `;
 
 const TextVizContainer = styled.div`
@@ -56,6 +54,7 @@ const LeftBar = styled.div`
 
 const Right = styled.div`
   margin-left: 50px;
+  width:calc(100% - 250px);
 `;
 
 class TextVisualization extends Component {
