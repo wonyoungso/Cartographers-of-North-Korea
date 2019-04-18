@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MapContainer, ContributorInfo, CenterMarker, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
-import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, initTextVisualization} from '../actions';
-import { dispatchToGlobal, randomBetween } from '../utils';
-import loadSequence from '../constants/nk_osm_seq.json';
+import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
+import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, changeTextVisualization} from '../actions';
 import axios from 'axios';
 import 'intersection-observer';
 import scrollama from 'scrollama';
@@ -150,7 +148,7 @@ class Home extends Component {
         case "changeInterestingPOIs":
           
           let poi = _.find(interestingPOIs, iPoi => {
-            return iPoi.op == e.element.dataset.poiId;
+            return iPoi.op === e.element.dataset.poiId;
           });
           
           this.props.dispatch(changeCurrentFeature(poi));
@@ -177,7 +175,8 @@ class Home extends Component {
           this.props.dispatch(changeWorldMapHeaviestContributor());
           break;
         case 'initTextVisualization':
-          this.props.dispatch(initTextVisualization());
+          this.props.dispatch(changeTextVisualization(true));
+          break;
         default: 
           break;
       }

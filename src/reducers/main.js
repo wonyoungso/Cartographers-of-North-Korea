@@ -8,6 +8,11 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+    case 'CHANGE_TEXT_VISUALIZATION':
+      return {
+        ...state,
+        textVisualization: action.payload.textVisualization
+      }
     case "CHANGE_MAP_LOADED":
       return {
         ...state,
@@ -112,6 +117,7 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         choloplethMode: action.payload.choloplethMode, //top20, top5, individual
         currentIndividual: action.payload.currentIndividual,
         legend: action.payload.legend,
+        textVisualization: false
       };
     case 'CHANGE_WORLD_MAP_INDIVIDUAL':
       return {

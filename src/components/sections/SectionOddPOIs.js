@@ -13,6 +13,8 @@ const SecondContainer = styled(SectionContainer)`
 
 class SectionOddPOIs extends Component {
   render() {
+    var interestingPOIs2 = [interestingPOIs[0]];
+
     return (
       <SecondContainer>
         <Sticky className="trigger" data-action-name="wrapupChronicleMap">
@@ -25,7 +27,7 @@ class SectionOddPOIs extends Component {
         </div>
 
         {
-          _.map(interestingPOIs, (interestingPOI, i) => {
+          _.map(interestingPOIs2, (interestingPOI, i) => {
             return (
               <InterestingPOIs {...interestingPOI} key={i}  />
             )

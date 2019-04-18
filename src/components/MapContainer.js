@@ -5,7 +5,7 @@ import { LayerGenerator } from './';
 import { toWgs84 }  from 'reproject';
 import proj4 from 'proj4';
 import turf from 'turf';
-import { dispatchToGlobal, randomBetween } from '../utils';
+import { randomBetween } from '../utils';
 import country_analysis_all from '../constants/country_analysis_all.json';
 import country_analysis_top_20 from '../constants/country_analysis_top_20.json';
 import country_analysis_top_5 from '../constants/country_analysis_top_5.json';
@@ -32,6 +32,8 @@ class MapContainer extends Component {
     this.map.on('style.load', this.handleStyleLoad.bind(this));
     this.map.on('moveend', this.handleMoveEnd.bind(this));
     this.map.on('styledata', this.handleRender.bind(this));
+    
+    
   }
 
   handleRender(e){
@@ -145,6 +147,7 @@ class MapContainer extends Component {
     }, 'place-city-sm');
 
     this.addWorldMap();
+    this.map.resize();
   }
 
   addWorldMap(){
@@ -190,8 +193,8 @@ class MapContainer extends Component {
     let nkTileVisibility = nkTile ? 'visible' : 'none';
 
     if (window.map.isStyleLoaded()){
-
-
+      this.map.resize();
+  
       this.map.setLayoutProperty('nk-line-layer', 'visibility', nkTileVisibility);
       this.map.setLayoutProperty('nk-polygon-layer', 'visibility', nkTileVisibility);
       this.map.setLayoutProperty('nk-point-layer', 'visibility', nkTileVisibility);
@@ -217,7 +220,6 @@ class MapContainer extends Component {
       this.map.setFilter('nk-polygon-layer', ["<", "t", currentTimeStamp]);
       this.map.setFilter('nk-point-layer', ["<", "t", currentTimeStamp]);  
       
-      this.map.resize();
     }
   }
 

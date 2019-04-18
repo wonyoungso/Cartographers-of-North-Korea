@@ -15,6 +15,8 @@ import TimelineScroller from './TimelineScroller';
 import CholoplethLegend from './CholoplethLegend';
 import KoreanLegend from './KoreanLegend';
 import IndividualInfo from './IndividualInfo';
+import TextVisualization from './TextVisualization';
+import UserResponse from './UserResponse';
 
 export {
   ChoroplethMap,
@@ -33,5 +35,7 @@ export {
   TimelineScroller,
   CholoplethLegend,
   KoreanLegend, 
-  IndividualInfo
+  IndividualInfo,
+  TextVisualization,
+  UserResponse
 };

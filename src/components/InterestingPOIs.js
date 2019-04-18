@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import mixins from '../stylesheets/mixins';
-import {SectionContainer, Box, Sticky} from '../stylesheets/components';
+import {SectionContainer } from '../stylesheets/components';
 import moment from 'moment';
 import _ from 'lodash';
 

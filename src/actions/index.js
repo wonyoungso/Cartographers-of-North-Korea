@@ -7,6 +7,14 @@ export const reset = () => {
   }
 }
 
+export const changeTextVisualization = (textVisualization) => {
+  return {
+    type: 'CHANGE_TEXT_VISUALIZATION',
+    payload: {
+      textVisualization: textVisualization
+    }
+  }
+}
 
 
 export const changeIntro = (params) => {

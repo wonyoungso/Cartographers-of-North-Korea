@@ -8,6 +8,7 @@ export const DEFAULT_STATE = {
   nkTile: false,
   cholopleth: false,
   timelineUI: false,
+  textVisualization: false,
   legend: false,
   currentSeq: 0,
   currentFeature: null,
@@ -27,5 +28,12 @@ export const INTERESTING_NAMES = [
   {dataPoint: "pg=408248450", id: 408248450,  title: "위대한 수령 김일성동지의 개선연설 자필기념비"},
   {dataPoint: "pg=554071936", id: 554071936,  title: "Prison Workers Unit 3 Village"}
 ]
+
+export const SUBCATEGORY_SELECT = {
+  1: ['Why did they map North Korea?', '1'],
+  2: ['How did they get the geospatial information?', '2'],
+  3: ['North Korea and Open Mapping', '3']
+}
+
 // 1448928000
 // 1448928052

@@ -11,12 +11,12 @@ const Fragment = React.Fragment;
 class App extends Component {
   componentWillMount(){
 
-    window.addEventListener('resize', this.resizeHandler.bind(this));
-    this.resizeHandler();
   }
 
   componentDidMount(){
 
+    window.addEventListener('resize', this.resizeHandler.bind(this));
+    this.resizeHandler();
   }
 
 

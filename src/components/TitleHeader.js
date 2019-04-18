@@ -16,7 +16,6 @@ const HeaderContainer = styled.div`
   background-color: white;
   font-size: 0.8em;
   color: black;
-  width: 330px;
 
   .ko {
     ${mixins.BOLD_TYPE}
@@ -46,9 +45,6 @@ class TitleHeader extends Component {
     return (
       <HeaderContainer titleHeader={this.props.titleHeader}>    
         Cartographers of North Korea &nbsp;<span className="ko">북한의 지도 제작자</span>
-        <DateArea>
-          May 12th, 2019  ·  Wonyoung So
-        </DateArea>
       </HeaderContainer>
     )
   }
