@@ -8,6 +8,22 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+    case 'ADD_TEXT_CATEGORY':
+      return {
+        ...state,
+        selectedTextCategory: {
+          ...state.selectedTextCategory,
+          [action.payload.id]: action.payload.textCategoryInfo
+        }
+      }
+    case 'REMOVE_TEXT_CATEGORY':
+      let selectedTextCategory = { ...state.selectedTextCategory };
+
+      delete selectedTextCategory[action.payload.id]
+      return {
+        ...state,
+        selectedTextCategory: selectedTextCategory
+      }
     case 'CHANGE_TEXT_VISUALIZATION':
       return {
         ...state,

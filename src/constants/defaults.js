@@ -17,7 +17,8 @@ export const DEFAULT_STATE = {
   graphMode: "all", // all, korean
   choloplethMode: "all", //top20, top5, individual
   currentIndividual: null,
-  center: [125.75432, 39.03385]
+  center: [125.75432, 39.03385],
+  selectedTextCategory: {}
 };
 
 export const INTERESTING_NAMES = [
@@ -30,9 +31,9 @@ export const INTERESTING_NAMES = [
 ]
 
 export const SUBCATEGORY_SELECT = {
-  1: ['Why did they map North Korea?', '1'],
-  2: ['How did they get the geospatial information?', '2'],
-  3: ['North Korea and Open Mapping', '3']
+  1: ['Why?', '1'],
+  2: ['How?', '2'],
+  3: ['Comments', '3']
 }
 
 // 1448928000

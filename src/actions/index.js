@@ -7,6 +7,25 @@ export const reset = () => {
   }
 }
 
+export const addTextCategorySelected = (id, textCategoryInfo) => {
+  return {
+    type: 'ADD_TEXT_CATEGORY',
+    payload: {
+      id: id,
+      textCategoryInfo: textCategoryInfo
+    }
+  }
+}
+export const removeTextCategorySelected = (id) => {
+  return {
+    type: 'REMOVE_TEXT_CATEGORY',
+    payload: {
+      id: id
+    }
+  }
+}
+
+
 export const changeTextVisualization = (textVisualization) => {
   return {
     type: 'CHANGE_TEXT_VISUALIZATION',

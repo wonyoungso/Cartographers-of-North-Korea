@@ -1,22 +1,12 @@
 import _ from 'lodash';
 import axios from 'axios';
 
-export const dispatchToGlobal = (action) => {
-  let postAction = { ...action };
-  postAction[`${getMetaContent('csrf-param')}`] = getMetaContent('csrf-token');
-
-  axios.post('/messages', postAction)
-    .then(response => {
-
-    })
-    .catch(response => {
-
-    });
-}
 
 export const constrain = (amt, low, high) => {
   return (amt < low) ? low : ((amt > high) ? high : amt);
 }
+
+
 
 
 export const numberWithDelimiter = (number, delimiter, separator) => {
