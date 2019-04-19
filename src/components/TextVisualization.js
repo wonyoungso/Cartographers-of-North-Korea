@@ -1,32 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { UserResponse } from './';
 import axios from 'axios';
-import { addTextCategorySelected, removeTextCategorySelected } from '../actions';
+import { addTextCategorySelected, removeTextCategorySelected, changeOsmUserReponseData } from '../actions';
 import _ from 'lodash';
 import { SUBCATEGORY_SELECT } from '../constants/defaults';
 import * as d3 from 'd3';
 
-const GridBox = styled.div`
-  column-count: 6;
-  column-gap: 1em;
-  width: calc(100% -20px);
-`;
-
-const TextVizContainer = styled.div`
-  position:fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 15;
-  background:white;
-  transition: 0.5s opacity;
-  overflow-y:scroll;
-  display: flex;
-`;
+const Fragment = React.Fragment;
 const Bar = styled.div`
+  position: fixed;
+  z-index: 8;
+  top: 0;
+  opacity: 0;
+  transition: 0.4s opacity;
   width: 170px;
 
   section {
@@ -79,28 +66,16 @@ const UnCategoryLink = styled.a`
     margin-left: 10px;
   }
 `
-const Main = styled.div`
-  margin: 0 25px;
-  width:calc(100% - 340px);
-  padding-top: 9px;
-`;
+
+
 
 class TextVisualization extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      osm_users: [],
-      responseCategories: []
-    };
-  }
+  
   componentDidMount(){
     axios.all([axios.get('http://nkosm.wonyoung.so/api/osm_users.json')])
     .then(axios.spread((response) => {
       if (response.data.success) {
-        this.setState({
-          osm_users: response.data.osm_users,
-          responseCategories: response.data.response_categories
-        });
+        this.props.dispatch(changeOsmUserReponseData(response.data.osm_users, response.data.response_categories));
       }
     }));
 
@@ -120,14 +95,13 @@ class TextVisualization extends Component {
   }
 
   render() {
-    let { textVisualization, selectedTextCategory } = this.props;
-    let { osm_users, responseCategories } = this.state;
+    let { textVisualization, selectedTextCategory, responseCategories } = this.props;
     let subCategories = _.groupBy(responseCategories, c => { return c.subcategory_id; });
     let colorScale = d3.scaleOrdinal(d3.schemeSet3).domain(_.map(responseCategories, rc => { return rc.id}));
     
     return (
-      <TextVizContainer style={{ opacity: 1 }}>
-        <Bar>
+      <Fragment>
+        <Bar style={{left: 0, opacity: textVisualization ? 1 : 0}}>
           {
             _.map(subCategories, (categories, key) => {
               return (
@@ -152,18 +126,8 @@ class TextVisualization extends Component {
             })
           }
         </Bar>
-        <Main>
-          <GridBox>
-            {
-              _.map(osm_users, ou => {
-                return (
-                  <UserResponse {...ou} colorScale={colorScale} key={ou.osm_user} />
-                )
-              })
-            }
-          </GridBox>
-        </Main>
-        <Bar>
+        
+        <Bar style={{right: 0, opacity: textVisualization ? 1 : 0}}>
           <section>
             <h3>
               Responses<br />
@@ -175,7 +139,7 @@ class TextVisualization extends Component {
             </p>
           </section>
         </Bar>
-      </TextVizContainer>
+      </Fragment>
     )
   }
 }
@@ -183,7 +147,9 @@ class TextVisualization extends Component {
 let mapStateToProps = state => {
   return {
     textVisualization: state.textVisualization,
-    selectedTextCategory: state.selectedTextCategory
+    selectedTextCategory: state.selectedTextCategory,
+    responseCategories: state.responseCategories
+
   }
 }
 export default connect(mapStateToProps)(TextVisualization);

@@ -6,6 +6,16 @@ export const reset = () => {
     payload: {}
   }
 }
+export const changeOsmUserReponseData = (osmUsers, responseCategories) => {
+  return {
+    type: 'CHANGE_OSM_USER_RESPONSE_DATA',
+    payload: {
+      osmUsers: osmUsers,
+      responseCategories: responseCategories
+    }
+  }
+}
+
 
 export const addTextCategorySelected = (id, textCategoryInfo) => {
   return {
@@ -163,7 +173,8 @@ export const changeWorldMapHeavyContributor = () => {
       choloplethMode: "top20", //top20, top5, individual
       currentIndividual: null,
       currentFeature: null,
-      legend: false
+      legend: false,
+      textVisualization: false
     }
   }
 };
@@ -176,7 +187,8 @@ export const changeWorldMapHeaviestContributor = () => {
       choloplethMode: "top5", //top20, top5, individual
       currentIndividual: null,
       currentFeature: null,
-      legend: false
+      legend: false,
+      textVisualization: false
     }
   }
 };
@@ -188,7 +200,8 @@ export const changeWorldMapIndividual = (individual) => {
       cholopleth: true,
       currentIndividual: individual,
       currentFeature: null,
-      legend: false
+      legend: false,
+      textVisualization: false
     }
   }
 };

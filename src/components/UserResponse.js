@@ -17,6 +17,7 @@ const RespArea = styled.div`
   margin-bottom: 10px;
   font-size: 6px;
   line-height: 9px;
+  cursor:pointer;
 `;
 
 class UserResponse extends Component {

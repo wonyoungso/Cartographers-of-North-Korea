@@ -23,6 +23,7 @@ const NonSticky = styled.div`
   z-index:5;
   ${mixins.BOLD_TYPE}
   font-size:1.2em;
+  line-height:1.4;
   border: 1px solid #BBB;
   padding: 10px 15px;
   background: #E7F7FB;

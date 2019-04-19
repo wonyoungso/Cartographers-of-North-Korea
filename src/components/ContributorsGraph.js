@@ -235,21 +235,21 @@ class ContributorsGraph extends Component {
     //top20, top5
     if (!_.isNull(currentIndividual) && !_.isUndefined(currentIndividual)) {
 
-      return d.id == currentIndividual.id ? "#FF0000" : "#DDD";
+      return d.id === currentIndividual.id ? "#FF0000" : "#DDD";
 
     } else {
-      if (graphMode == "korean") {
+      if (graphMode === "korean") {
         return d.korean ? "#FF0000" : "#DDD";
 
-      } else if (graphMode == "all") {
+      } else if (graphMode === "all") {
 
         return this.colorScale(d.all_count);
 
-      } else if (graphMode == "top20") {
+      } else if (graphMode === "top20") {
 
         return d.rank > 0 && d.rank <= 20 ? "#253494" : "#DDD";
 
-      } else if (graphMode == "top5") {
+      } else if (graphMode === "top5") {
 
         return d.rank > 0 && d.rank <= 5 ? "#253494" : "#DDD";
 
@@ -261,7 +261,7 @@ class ContributorsGraph extends Component {
   componentDidUpdate(prevProps){
     let { graphMode, choloplethMode, cholopleth, currentIndividual } = this.props;
 
-    if (prevProps.width != this.props.width || prevProps.height != this.props.height) {
+    if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
       this.d3Update();
       console.log("d3update called");
     }
@@ -274,7 +274,7 @@ class ContributorsGraph extends Component {
 
       this.circleGraph.transition().attr("fill", d => {
 
-        if (d.id == currentIndividual.id) {
+        if (d.id === currentIndividual.id) {
         
           return "#FF0000";
         
@@ -288,24 +288,24 @@ class ContributorsGraph extends Component {
 
     } else {
       //top20, top5
-      if (graphMode == "korean") {
+      if (graphMode === "korean") {
 
         this.circleGraph.transition().attr("fill", d => {
           return d.korean ? "#FF0000" : "#DDD";
         })
 
-      } else if (graphMode == "all") {
+      } else if (graphMode === "all") {
         this.circleGraph.transition().attr("fill", d => {
           return this.colorScale(d.all_count)
         });
 
-      } else if (graphMode == "top20") {
+      } else if (graphMode === "top20") {
         
         this.circleGraph.transition().attr("fill", d => {
           return d.rank > 0 && d.rank <= 20 ? "#253494" : "#DDD"; // this.colorScale(d.all_count)
         })
 
-      } else if (graphMode == "top5") {
+      } else if (graphMode === "top5") {
         this.circleGraph.transition().attr("fill", d => {
           return d.rank > 0 && d.rank <= 5 ? "#253494" : "#DDD";
         }) //this.colorScale(d.all_count)
@@ -368,7 +368,7 @@ class ContributorsGraph extends Component {
               </ToolTipLabelArea>
             </Tooltip>
           }
-          <KoreanLegend show={graphMode == "korean"} />
+          <KoreanLegend show={graphMode === "korean"} />
           {
             _.isNull(currentIndividual) || _.isUndefined(currentIndividual) ? 
             null : <IndividualInfo />

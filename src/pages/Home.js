@@ -122,7 +122,7 @@ class Home extends Component {
     // console.log(e.index);
     let { windowHeight } = this.props;
     let actionName = e.element.dataset.actionName;
-    // console.log(actionName, "enter");
+    console.log(actionName, "enter");
     
     if (!_.isUndefined(actionName)){
 
@@ -198,18 +198,25 @@ class Home extends Component {
       switch (actionName) {
      
         case "changeGraphKorean":
-          if (e.direction == "up") {
+          if (e.direction === "up") {
             this.props.dispatch(initGraphScene({
               zoom: this.timelineZoomLevelScale(windowHeight)
             }));
           }
           break;
         case 'initWorldMap': 
-          if (e.direction == "up") {
+          if (e.direction === "up") {
             this.props.dispatch(changeGraphKorean({
               zoom: this.timelineZoomLevelScale(windowHeight)
             }));
           }
+          break;
+        case 'initTextVisualization':
+          if (e.direction === "up") {
+
+            this.props.dispatch(changeTextVisualization(false));
+          }
+          
           break;
         default: 
           break;

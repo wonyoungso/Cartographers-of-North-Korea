@@ -82,7 +82,8 @@ class Intro extends Component {
           </H1>
 
           <SubParagraph>
-            An analysis of the OpenStreetMap data in North Korea: Who are the contributors? How and Why did they contribute to North Korea?
+            An analysis of the OpenStreetMap data in North Korea: <br/>
+            Who are the contributors? How and Why did they contribute to North Korea?
           </SubParagraph>
 
           <DateBox>

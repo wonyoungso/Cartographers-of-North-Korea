@@ -8,6 +8,12 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+    case 'CHANGE_OSM_USER_RESPONSE_DATA':
+      return {
+        ...state,
+        osmUsers: action.payload.osmUsers,
+        responseCategories: action.payload.responseCategories
+      }
     case 'ADD_TEXT_CATEGORY':
       return {
         ...state,

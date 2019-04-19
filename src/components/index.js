@@ -16,6 +16,7 @@ import CholoplethLegend from './CholoplethLegend';
 import KoreanLegend from './KoreanLegend';
 import IndividualInfo from './IndividualInfo';
 import TextVisualization from './TextVisualization';
+import TextVisualizationResponses from './TextVisualizationResponses';
 import UserResponse from './UserResponse';
 
 export {
@@ -37,5 +38,6 @@ export {
   KoreanLegend, 
   IndividualInfo,
   TextVisualization,
-  UserResponse
+  UserResponse,
+  TextVisualizationResponses
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import mixins from '../../stylesheets/mixins';
+import { TextVisualizationResponses } from '../';
 import {SectionContainer, Box, Sticky, NonSticky } from '../../stylesheets/components';
 
 const SectionTextContainer = styled(SectionContainer)`
@@ -23,10 +24,12 @@ class SectionText extends Component {
     return (
       <SectionTextContainer style={{height: this.props.windowHeight * 4.5}}>
         <GradientSticky height={this.props.windowHeight} />
+        <div style={{ height: 100 }}></div>
         <NonSticky className="trigger" data-action-name="initTextVisualization">
           Here are the responses from 211 contributors.
         </NonSticky>
 
+        <TextVisualizationResponses />
       </SectionTextContainer>
     )
   }

@@ -8,7 +8,7 @@ const TITLE_TYPE = `
 `;
 
 const REGULAR_TYPE = `
-  font-family: 'Average', 'Noto Serif KR', serif;
+  font-family: 'Caponi Text', 'Noto Serif KR', serif;
   font-size: 1em;
   line-height: 1.6em;
   font-style: normal;
@@ -17,7 +17,7 @@ const REGULAR_TYPE = `
 `;
 
 const BOLD_TYPE = `
-  font-family: 'Average', 'Noto Serif KR', serif;
+  font-family: 'Caponi Text', 'Noto Serif KR', serif;
   font-size: 1em;
   line-height: 1.6em;
   font-style: normal;
