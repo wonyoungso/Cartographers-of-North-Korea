@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash';
 import styled from 'styled-components';
+import { changeSelectedOsmUserResponse } from '../actions';
 import { connect } from 'react-redux';
 
 const TextSpan = styled.span`
@@ -9,7 +10,6 @@ const TextSpan = styled.span`
   color: ${props => props.color};
   background-color: ${props => props.color};
 
-  transition: 0.4s all;
 
 `;
 
@@ -18,13 +18,24 @@ const RespArea = styled.div`
   font-size: 6px;
   line-height: 9px;
   cursor:pointer;
+  transition: 0.4s all;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 class UserResponse extends Component {
+  handleClick(response){
+    this.props.dispatch(changeSelectedOsmUserResponse({
+      ...this.props
+    })) 
+  }
+
   render() {
     let { selectedTextCategory } = this.props;
     return (
-      <RespArea>
+      <RespArea onClick={this.handleClick.bind(this)}>
         {
           _.map(this.props.responses, response => {
             let selected = !_.isUndefined(selectedTextCategory[response.category_id]);

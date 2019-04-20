@@ -54,16 +54,23 @@ const UnCategoryLink = styled.a`
   font-size: 0.85em;
   display: inline-block;
   margin-bottom: 8px;
+  margin-left: -5px;
   line-height: 1.2;
   padding: 5px;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  color:white;
+  color:black;
+  position:relative;
+  padding-right:20px;
+
   
   .close-btn {
     font-size:1.2em;
-    margin-left: 10px;
+
+    top: 1px;
+    right: 6px;
+    position: absolute;
   }
 `
 

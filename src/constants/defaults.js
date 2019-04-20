@@ -17,8 +17,13 @@ export const DEFAULT_STATE = {
   graphMode: "all", // all, korean
   choloplethMode: "all", //top20, top5, individual
   currentIndividual: null,
+  osmUsers: [],
+  responseCategories: [],
+  osmUserHistories: null,
+  osmUserHistoriesIdx: 0,
   center: [125.75432, 39.03385],
-  selectedTextCategory: {}
+  selectedTextCategory: {},
+  selectedOsmUserResponse: null
 };
 
 export const INTERESTING_NAMES = [

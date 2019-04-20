@@ -18,6 +18,7 @@ import IndividualInfo from './IndividualInfo';
 import TextVisualization from './TextVisualization';
 import TextVisualizationResponses from './TextVisualizationResponses';
 import UserResponse from './UserResponse';
+import SelectedResponseViewer from './SelectedResponseViewer';
 
 export {
   ChoroplethMap,
@@ -39,5 +40,6 @@ export {
   IndividualInfo,
   TextVisualization,
   UserResponse,
-  TextVisualizationResponses
+  TextVisualizationResponses,
+  SelectedResponseViewer
 };

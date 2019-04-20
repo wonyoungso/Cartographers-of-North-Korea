@@ -36,16 +36,10 @@ class SectionFifth extends Component {
     return (
       <SectionFifthContainer style={{height: this.props.windowHeight}}>
         <Gutter height={100}></Gutter>
-        <NonStickyFinal className="trigger">
-          Because of the limitations of the data, these contributors would be still unknown unless they wrote an article about who they are and why they contributed. Identifying them might be not ethically a good idea. Nevertheless, regarding the complicated situation where there are fundamental differences between the beneficiaries (like, the random people on the internet from the first world) and the actual residents who live in the territory, asking the questions and imagining the reason why the 887 people have contributed data to North Korea appears to touch several things from the ideals that the internet and the open source culture have given to us, to North Korea’s surveillance- and defense-optimized, and state-controlled intranet that is founded on the open source culture. Particularly, with the respect to many POIs which are labeled in a conformist way, this “open source map” is truly oddly situated in the open source culture.
+        <NonStickyFinal className="trigger" data-action-name="final">
+          Regarding the complicated situation where there are fundamental differences between the beneficiaries (like, the random people on the internet from the first world) and the actual residents who live in the territory, asking the questions and imagining the reason why the 887 people have contributed data to North Korea appears to touch several things from the ideals that the internet and the open source culture have given to us, to North Korea’s surveillance- and defense-optimized, and state-controlled intranet that is founded on the open source culture. Particularly, with the respect to many POIs which are labeled in a conformist way, this “open source map” is truly oddly situated in the open source culture.
           
           <Gutter height={50}></Gutter>
-          <p>
-            For a companion posting to this project visit:<br/>
-            <a href="https://medium.com/@wonyoungso/cartographers-of-north-korea-23af22a22b22" target="_blank">https://medium.com/@wonyoungso/cartographers-of-north-korea-23af22a22b22</a>
-          </p>
-
-          <Gutter height={30}></Gutter>
           <MethodologyTitle>
             * Methodology
           </MethodologyTitle>

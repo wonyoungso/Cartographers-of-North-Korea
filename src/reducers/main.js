@@ -1,4 +1,5 @@
 import { DEFAULT_STATE } from '../constants/defaults';
+import _ from 'lodash';
 
 export default function screenReducer(state = DEFAULT_STATE, action){
   switch(action.type) {
@@ -8,6 +9,16 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+    case 'CHANGE_OSM_USER_HISTORIES_IDX':
+      return {
+        ...state,
+        osmUserHistoriesIdx: action.payload.osmUserHistoriesIdx
+      };  
+    case 'CHANGE_OSM_USER_HISTORIES':
+      return {
+        ...state,
+        osmUserHistories: action.payload.osmUserHistories
+      };    
     case 'CHANGE_OSM_USER_RESPONSE_DATA':
       return {
         ...state,
@@ -71,6 +82,14 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         timelineUI: action.payload.timelineUI,
         legend: action.payload.legend,
         titleHeader: action.payload.titleHeader
+      };
+    case 'CHANGE_SELECTED_OSM_USER_RESPONSE':
+      return {
+        ...state,
+        selectedOsmUserResponse: action.payload.selectedOsmUserResponse,
+        cholopleth: _.isNull(action.payload.selectedOsmUserResponse),
+        nkTile: !_.isNull(action.payload.selectedOsmUserResponse),
+        osmUserHistoriesIdx: _.isNull(action.payload.selectedOsmUserResponse) ? 0 : state.osmUserHistoriesIdx
       };
     case 'WRAPUP_CHRONICLE_MAP':
       return {

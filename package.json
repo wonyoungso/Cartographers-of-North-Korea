@@ -2,11 +2,13 @@
   "name": "cartographers-of-nk",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea/",
   "dependencies": {
     "@material-ui/core": "^3.7.1",
     "axios": "^0.18.0",
     "d3": "^5.7.0",
     "deck.gl": "^6.1.1",
+    "gh-pages": "^2.0.1",
     "intersection-observer": "^0.5.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
@@ -32,7 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

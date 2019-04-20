@@ -6,6 +6,36 @@ export const reset = () => {
     payload: {}
   }
 }
+
+export const changeOsmUserHistories = (osmUserHistories) => {
+  return {
+    type: 'CHANGE_OSM_USER_HISTORIES',
+    payload: {
+      osmUserHistories: osmUserHistories
+    }
+  }
+}
+
+export const changeOsmUserHistoriesIdx = (osmUserHistoriesIdx) => {
+  return {
+    type: 'CHANGE_OSM_USER_HISTORIES_IDX',
+    payload: {
+      osmUserHistoriesIdx: osmUserHistoriesIdx
+    }
+  }
+}
+
+
+export const changeSelectedOsmUserResponse = (selectedOsmUserResponse) => {
+  return {
+    type: 'CHANGE_SELECTED_OSM_USER_RESPONSE',
+    payload: {
+      selectedOsmUserResponse: selectedOsmUserResponse
+    }
+  }
+}
+
+// export const 
 export const changeOsmUserReponseData = (osmUsers, responseCategories) => {
   return {
     type: 'CHANGE_OSM_USER_RESPONSE_DATA',

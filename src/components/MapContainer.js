@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMapLoaded, changeCurrentSeq } from '../actions';
+import { changeMapLoaded, changeCurrentSeq, changeOsmUserHistoriesIdx } from '../actions';
 import { LayerGenerator } from './';
 import { toWgs84 }  from 'reproject';
 import proj4 from 'proj4';
@@ -188,8 +188,10 @@ class MapContainer extends Component {
   }
 
 
-  componentDidUpdate(){
-    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode } = this.props;
+  componentDidUpdate(prevProps){
+    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode, selectedOsmUserResponse, osmUserHistories, osmUserHistoriesIdx } = this.props;
+
+
     let nkTileVisibility = nkTile ? 'visible' : 'none';
 
     if (window.map.isStyleLoaded()){
@@ -219,7 +221,79 @@ class MapContainer extends Component {
       this.map.setFilter('nk-line-layer', ["<", "t", currentTimeStamp]);
       this.map.setFilter('nk-polygon-layer', ["<", "t", currentTimeStamp]);
       this.map.setFilter('nk-point-layer', ["<", "t", currentTimeStamp]);  
+
+      if (_.isNull(prevProps.selectedOsmUserResponse) && !_.isNull(this.props.selectedOsmUserResponse)){
+        
+        this.map.flyTo({ center: [127.1205757172753, 38.76675314095931], zoom: 6.2 });
       
+      } else if (!_.isNull(prevProps.selectedOsmUserResponse) && _.isNull(this.props.selectedOsmUserResponse)) {
+
+        this.map.flyTo({ center: center, zoom: zoom });
+      }
+
+    }
+
+
+    if (!_.isNull(osmUserHistories)) {
+      this.updateOsmUserHistory(osmUserHistories[osmUserHistoriesIdx]);
+    } else {
+      if (!_.isUndefined(this.map.getLayer('osm-user-history'))){
+        this.map.removeLayer('osm-user-history');
+        this.map.removeSource('osm-user-history-source');
+      }
+    }
+
+    
+  }
+
+  updateOsmUserHistory(osmUserHistory){
+
+
+    let feature4326 = toWgs84(osmUserHistory.features[0], proj4('EPSG:3857'));
+
+    let bbox = turf.bbox(feature4326);
+    let buffered = turf.buffer(turf.bboxPolygon(bbox), 1, "miles");
+    let finalBbox = turf.bbox(buffered)
+
+
+    // if (window.map.isStyleLoaded()){
+
+      if (_.isUndefined(this.map.getLayer('osm-user-history'))){
+        // var bboxPolygon = turf.bboxPolygon(bbox);
+        // console.log(bboxPolygon);
+
+        this.map.addSource("osm-user-history-source", {
+          type: 'geojson',
+          data: turf.bboxPolygon(finalBbox)
+        });
+
+        this.map.addLayer({
+          'id': 'osm-user-history',
+          'type': 'line',
+          'source': "osm-user-history-source",
+          'layout': {},
+          'paint': {
+            'line-color': '#FF0000',
+            'line-opacity': 0.8
+          }
+        });
+
+      } else {
+        
+        this.map.getSource('osm-user-history-source').setData(turf.bboxPolygon(finalBbox));
+      }
+
+    // }
+    
+
+    try {
+
+      this.map.fitBounds([[finalBbox[0], finalBbox[1]],
+      [finalBbox[2], finalBbox[3]]], {
+          padding: { top: 100, bottom: 100, left: 100, right: 100 }
+        }, { osmUserHistory: true });
+    } catch (e) {
+      this.handleMoveEnd({ osmUserHistory: true });
     }
   }
 
@@ -237,13 +311,13 @@ class MapContainer extends Component {
       // debugger;
       currentCountryJSON = currentIndividual;
 
-    } else if (choloplethMode == "all") {
+    } else if (choloplethMode === "all") {
 
       currentCountryJSON = { 
         country_counts: country_analysis_all 
       };
 
-    } else if (choloplethMode == "top20"){
+    } else if (choloplethMode === "top20"){
       
       currentCountryJSON = {
         country_counts: country_analysis_top_20
@@ -368,15 +442,14 @@ class MapContainer extends Component {
       }
       
 
-      if (feature4326.features[0].geometry.type == "Point") {
+      if (feature4326.features[0].geometry.type === "Point") {
         this.map.flyTo({
           center: feature4326.features[0].geometry.coordinates,
           zoom: randomBetween(12, 14)
         }, { zoomInData: true });
 
       } else {
-
-
+       
         let bbox = turf.bbox(feature4326);
         let buffered = turf.buffer(turf.bboxPolygon(bbox), 1, "miles");
         let finalBbox = turf.bbox(buffered)
@@ -397,6 +470,19 @@ class MapContainer extends Component {
   handleMoveEnd(e){
     // console.log(e);
     
+    if (e.osmUserHistory) {
+      _.delay(() => {
+        try {
+          let nextNum = (this.props.osmUserHistoriesIdx + 1) % this.props.osmUserHistories.length;
+          this.props.dispatch(changeOsmUserHistoriesIdx(nextNum));    
+        } catch(e){
+
+        }
+        
+      }, 4000);
+
+    }
+    
   }
 
 
@@ -410,6 +496,7 @@ class MapContainer extends Component {
 }
 
 let mapStateToProps = state => {
+
   return {
     windowWidth: state.windowWidth,
     windowHeight: state.windowHeight,
@@ -421,7 +508,10 @@ let mapStateToProps = state => {
     currentFeature: state.currentFeature,
     currentTimeStamp: state.currentTimeStamp,
     currentIndividual: state.currentIndividual,
-    choloplethMode: state.choloplethMode
+    choloplethMode: state.choloplethMode,
+    selectedOsmUserResponse: state.selectedOsmUserResponse,
+    osmUserHistories: state.osmUserHistories,
+    osmUserHistoriesIdx: state.osmUserHistoriesIdx
   }
 }
 

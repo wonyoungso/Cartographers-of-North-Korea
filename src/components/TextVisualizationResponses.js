@@ -8,15 +8,15 @@ import _ from 'lodash';
 const GridBox = styled.div`
   column-count: 6;
   column-gap: 1em;
-  width: calc(100% -20px);
+  width: calc(100% - 20px);
 `;
 
 const Main = styled.div`
   margin: 0 auto;
-  position: sticky;
+  position: relative;
   z-index: 5;
-  width: 1000px;
-  top: 20px;
+  width: calc(100% - 360px);
+  /* top: 20px; */
   padding-top: 9px;
 `;
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
+import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, 
+        SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
 import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, changeTextVisualization} from '../actions';
 import axios from 'axios';
 import 'intersection-observer';
@@ -177,6 +178,9 @@ class Home extends Component {
         case 'initTextVisualization':
           this.props.dispatch(changeTextVisualization(true));
           break;
+        case 'final':
+          this.props.dispatch(changeTextVisualization(false));
+          break;
         default: 
           break;
       }
@@ -227,7 +231,7 @@ class Home extends Component {
   }
 
   render() {
-    let { currentFeature } = this.props;
+    let { currentFeature, selectedOsmUserResponse } = this.props;
 
     return (
       <Fragment>
@@ -238,13 +242,20 @@ class Home extends Component {
           <SectionOddPOIs />
           <SectionThird />
           <SectionFourth />
-          <SectionText />
+          <SectionText /> 
           <SectionFifth />
         </div>
         <TimelineScroller />
         <TitleHeader />
         <CholoplethLegend />
-        <TextVisualization />
+        {
+          !selectedOsmUserResponse ?
+          <TextVisualization /> : null
+        }
+        {
+          selectedOsmUserResponse ? 
+          <SelectedResponseViewer /> : null
+        }
         <MapContainer />
       </Fragment>
     );
@@ -255,7 +266,8 @@ let mapStateToProps = state => {
   return {
     mapLoaded: state.mapLoaded,
     windowWidth: state.windowWidth,
-    windowHeight: state.windowHeight
+    windowHeight: state.windowHeight,
+    selectedOsmUserResponse: !_.isNull(state.selectedOsmUserResponse)
   }
 }
 
