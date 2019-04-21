@@ -79,7 +79,7 @@ const UnCategoryLink = styled.a`
 class TextVisualization extends Component {
   
   componentDidMount(){
-    axios.all([axios.get('http://nkosm.wonyoung.so/api/osm_users.json')])
+    axios.all([axios.get('https://nkosm.wonyoung.so/api/osm_users.json')])
     .then(axios.spread((response) => {
       if (response.data.success) {
         this.props.dispatch(changeOsmUserReponseData(response.data.osm_users, response.data.response_categories));
