@@ -145,7 +145,7 @@ class SelectedResponseViewer extends Component {
   loadOsmUserSampleData(){
 
     let { selectedOsmUserResponse } = this.props;
-    axios.get(`http://nkosm.wonyoung.so/api/osm_users/${selectedOsmUserResponse.id}.json`)
+    axios.get(`https://nkosm.wonyoung.so/api/osm_users/${selectedOsmUserResponse.id}.json`)
       .then((response) => {
         this.props.dispatch(changeOsmUserHistories(response.data.osm_user.histories));
 
