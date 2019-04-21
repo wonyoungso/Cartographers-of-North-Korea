@@ -20,7 +20,7 @@ class SectionSecond extends Component {
       <SecondContainer className="trigger" data-action-name="changeChronicleMap">
         <Sticky>
           <Box>
-            However, the quality of OSM data in North Korea is simply amazing; 889 users contributed 324,415 data points. But, Who gets benefits from this map? Definitely not the residents of North Korea.
+            However, the quality of OSM data in North Korea is simply amazing; 889 users contributed 324,415 data points. But, Who gets benefits from this map? 
           </Box>
         </Sticky>
 

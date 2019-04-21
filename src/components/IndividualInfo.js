@@ -71,7 +71,7 @@ class IndividualInfo extends Component {
 
     let labels = _.map(worldIds, worldId => {
       let label = _.find(world_data, w => {
-        return w.id == worldId.id
+        return w.id === worldId.id
       });
 
       label.count = worldId.count;

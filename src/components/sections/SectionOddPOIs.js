@@ -13,7 +13,7 @@ const SecondContainer = styled(SectionContainer)`
 
 class SectionOddPOIs extends Component {
   render() {
-    var interestingPOIs2 = [interestingPOIs[0]];
+    var interestingPOIs2 = _.shuffle(interestingPOIs).splice(0, 5);
 
     return (
       <SecondContainer>
