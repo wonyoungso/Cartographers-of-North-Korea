@@ -46,17 +46,17 @@ class MapContainer extends Component {
   
     this.map.addSource('nk-line', {
       type: 'vector',
-      tiles: ['http://rc.libremaps.net:3005/services/vector-tiles/nk_osm_line/{z}/{x}/{y}.pbf']
+      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_line/{z}/{x}/{y}.pbf']
     })
 
     this.map.addSource('nk-polygon', {
       type: 'vector',
-      tiles: ['http://rc.libremaps.net:3005/services/vector-tiles/nk_osm_polygon/{z}/{x}/{y}.pbf']
+      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_polygon/{z}/{x}/{y}.pbf']
     })
   
     this.map.addSource('nk-point', {
       type: 'vector',
-      tiles: ['http://rc.libremaps.net:3005/services/vector-tiles/nk_osm_point/{z}/{x}/{y}.pbf;']
+      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_point/{z}/{x}/{y}.pbf;']
     })
     
     this.map.addLayer({
