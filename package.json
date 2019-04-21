@@ -2,7 +2,7 @@
   "name": "cartographers-of-nk",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea/",
+  "homepage": "https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea",
   "dependencies": {
     "@material-ui/core": "^3.7.1",
     "axios": "^0.18.0",
