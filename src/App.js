@@ -37,7 +37,6 @@ class App extends Component {
       <BrowserRouter>
         <Fragment>
           <Route exact path="/" component={Home} />
-          <Route exact path="/summary" component={SummaryPage} />
         </Fragment>
       </BrowserRouter>
     );
