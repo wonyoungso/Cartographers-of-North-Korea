@@ -8,6 +8,7 @@ const Fragment = React.Fragment;
 class ContributorInfo extends Component {
   render() {
     let { currentFeature } = this.props;
+    var a = 1;
     return (
       <Fragment>
         <div className="contributor-info left">
