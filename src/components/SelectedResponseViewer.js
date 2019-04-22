@@ -196,7 +196,10 @@ class SelectedResponseViewer extends Component {
     let osmHistory;
 
     if (!_.isNull(osmUserHistories)) {
-      osmHistory = osmUserHistories[osmUserHistoriesIdx].features[0];
+      if (!_.isUndefined(osmUserHistories[osmUserHistoriesIdx])){
+        osmHistory = osmUserHistories[osmUserHistoriesIdx].features[0];
+
+      }
     }
     
     return (
@@ -254,7 +257,7 @@ class SelectedResponseViewer extends Component {
         
         </RespContainer>
         {
-          !_.isNull(osmUserHistories) ?
+          !_.isUndefined(osmHistory) ?
           <DataInfoContainer>
             <POIBox>
               <TitleArea>

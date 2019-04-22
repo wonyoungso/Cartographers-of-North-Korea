@@ -31,7 +31,7 @@ class SectionText extends Component {
   render() {
     let { selectedOsmUserResponse } = this.props;
     return (
-      <SectionTextContainer className={selectedOsmUserResponse ? "hide" : "" } style={{ height: this.props.windowHeight * 4.5}}>
+      <SectionTextContainer className={selectedOsmUserResponse ? "hide" : "" } style={{ height: this.props.windowHeight * 5.5}}>
         <GradientSticky height={this.props.windowHeight} />
         <div style={{ height: 100 }}></div>
 

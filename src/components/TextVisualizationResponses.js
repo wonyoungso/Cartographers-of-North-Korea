@@ -7,7 +7,8 @@ import _ from 'lodash';
 
 const GridBox = styled.div`
   column-count: 6;
-  column-gap: 1em;
+  column-gap: 20px;
+  /* height: 2000px; */
   width: calc(100% - 20px);
 `;
 

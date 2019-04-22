@@ -9,16 +9,19 @@ const TextSpan = styled.span`
   
   color: ${props => props.color};
   background-color: ${props => props.color};
-
+  transition: 0.4s all;
 
 `;
 
 const RespArea = styled.div`
-  margin-bottom: 10px;
-  font-size: 6px;
-  line-height: 9px;
+  margin-bottom: 20px;
+  font-size: 5px;
+  line-height: 8px;
   cursor:pointer;
   transition: 0.4s all;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 
   &:hover {
     opacity: 0.6;

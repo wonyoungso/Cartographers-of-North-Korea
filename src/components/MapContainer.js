@@ -235,11 +235,17 @@ class MapContainer extends Component {
 
 
     if (!_.isNull(osmUserHistories)) {
-      this.updateOsmUserHistory(osmUserHistories[osmUserHistoriesIdx]);
+      if (!_.isUndefined(osmUserHistories[osmUserHistoriesIdx])){
+        this.updateOsmUserHistory(osmUserHistories[osmUserHistoriesIdx]);
+      }
     } else {
       if (!_.isUndefined(this.map.getLayer('osm-user-history'))){
         this.map.removeLayer('osm-user-history');
+        this.map.removeLayer('osm-user-history-circle');
         this.map.removeSource('osm-user-history-source');
+
+        this.map.removeLayer('osm-user-history-bbox');
+        this.map.removeSource('osm-user-history-bbox-source');
       }
     }
 
@@ -248,7 +254,7 @@ class MapContainer extends Component {
 
   updateOsmUserHistory(osmUserHistory){
 
-
+    
     let feature4326 = toWgs84(osmUserHistory.features[0], proj4('EPSG:3857'));
 
     let bbox = turf.bbox(feature4326);
@@ -262,9 +268,25 @@ class MapContainer extends Component {
         // var bboxPolygon = turf.bboxPolygon(bbox);
         // console.log(bboxPolygon);
 
-        this.map.addSource("osm-user-history-source", {
+        this.map.addSource("osm-user-history-bbox-source", {
           type: 'geojson',
           data: turf.bboxPolygon(finalBbox)
+        });
+
+        this.map.addLayer({
+          'id': 'osm-user-history-bbox',
+          'type': 'line',
+          'source': "osm-user-history-bbox-source",
+          'layout': {},
+          'paint': {
+            'line-color': '#FF0000',
+            'line-opacity': 0.8
+          }
+        });
+
+        this.map.addSource("osm-user-history-source", {
+          type: 'geojson',
+          data: feature4326
         });
 
         this.map.addLayer({
@@ -275,12 +297,28 @@ class MapContainer extends Component {
           'paint': {
             'line-color': '#FF0000',
             'line-opacity': 0.8
-          }
+          },
+          "filter": ["in", "$type", "Polygon", "LineString"]
+        });
+
+        this.map.addLayer({
+          'id': 'osm-user-history-circle',
+          'type': 'circle',
+          'source': "osm-user-history-source",
+          'layout': {},
+          'paint': {
+            'circle-color': '#FF0000',
+            'circle-opacity': 0.8
+          },
+          "filter": ["==", "$type", "Point"]
         });
 
       } else {
+
+        this.map.getSource('osm-user-history-source').setData(feature4326);
+        this.map.getSource('osm-user-history-bbox-source').setData(turf.bboxPolygon(finalBbox));
         
-        this.map.getSource('osm-user-history-source').setData(turf.bboxPolygon(finalBbox));
+        
       }
 
     // }
@@ -409,7 +447,7 @@ class MapContainer extends Component {
           "paint": {
             "circle-radius": 10,
             "circle-opacity": 0.7,
-            "circle-color": "#000000"
+            "circle-color": "#FF0000"
           },
           filter: ["==", "$type", "Point"]
         }, 'place-city-sm');
@@ -419,22 +457,12 @@ class MapContainer extends Component {
           "source": "currentFeature",
           "paint": {
             "line-opacity": 0.7,
-            "line-width": 10,
-            "line-color": "#000000"
+            "line-width": 1,
+            "line-color": "#FF0000"
           },
-          filter: ["==", "$type", "LineString"]
+          filter: ["in", "$type", "LineString", "Polygon"]
         }, 'place-city-sm');
 
-        this.map.addLayer({
-          "id": "currentFeature-fill",
-          "type": "fill",
-          "source": "currentFeature",
-          "paint": {
-            "fill-opacity": 0.7,
-            "fill-color": "#000000"
-          },
-          filter: ["==", "$type", "Polygon"]
-        }, 'place-city-sm');
 
       } else {
 
