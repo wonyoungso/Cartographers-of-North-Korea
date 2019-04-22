@@ -8,6 +8,7 @@ import { changeSelectedOsmUserResponse, changeOsmUserHistories, changeOsmUserHis
 import axios from 'axios';
 import * as d3 from 'd3';
 import moment from 'moment';
+import chroma from 'chroma-js';
 
 const Fragment = React.Fragment;
 const RespContainer = styled.div`

@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^3.7.1",
     "axios": "^0.18.0",
+    "chroma-js": "^2.0.3",
     "d3": "^5.7.0",
     "deck.gl": "^6.1.1",
     "gh-pages": "^2.0.1",

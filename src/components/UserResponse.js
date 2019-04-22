@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import { changeSelectedOsmUserResponse } from '../actions';
 import { connect } from 'react-redux';
+import chroma from 'chroma-js';
 
 const TextSpan = styled.span`
   word-break: break-word;
