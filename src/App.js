@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import SummaryPage from './pages/SummaryPage';
+// import SummaryPage from './pages/SummaryPage';
+import LandingPage from './pages/LandingPage';
 
 const Fragment = React.Fragment;
 
@@ -36,7 +37,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Fragment>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={Home} />
+          <Route exact path={process.env.PUBLIC_URL + '/'} component={LandingPage} />
+          <Route path={process.env.PUBLIC_URL + '/viz'} component={Home} />
         </Fragment>
       </BrowserRouter>
     );

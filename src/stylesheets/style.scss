@@ -24,10 +24,24 @@ $text_color: black;
   font-weight:600;
 }
         
+@font-face {
+  font-family:"Caponi Display";
+  src: url("./CaponiDisplay-Medium.woff") format("woff");
+  font-style:normal;
+  font-weight:400;
+}
+
+@font-face {
+  font-family:"Caponi Display";
+  src: url("./CaponiDisplay-Bold.woff") format("woff");
+  font-style:normal;
+  font-weight:700;
+}
+        
       
 
 body {
-  background-color:white;
+  background-color:rgb(231, 247, 251);
   font-family: 'Caponi Text', 'Noto Serif KR', sans-serif;
   font-size:14px;
   line-height: 16px;
