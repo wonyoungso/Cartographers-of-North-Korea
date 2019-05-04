@@ -2,7 +2,7 @@
 6.894 Final Project
 Wonyoung So
 
-![Visualization](https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea/)
+![Visualization](https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea/assets/visualization.png)
 
 Visualization
 https://github.mit.edu/pages/6894-sp19/Cartographers-of-North-Korea/
