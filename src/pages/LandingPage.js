@@ -98,9 +98,9 @@ class LandingPage extends Component {
             6.894<br/>
             Interactive Data Visualization
             <br/><br/>
-            Massachusettes<br/>
-            Institute<br/>
-            of Technology
+            Massachusetts<br/>
+            Institute of<br/>
+            Technology
           </div>
         </Container>
 
@@ -116,7 +116,7 @@ class LandingPage extends Component {
             </p>
           </div>
           <div className="column">
-            <AppLink to="/viz">
+            <AppLink to={process.env.PUBLIC_URL + '/viz'}>
               Launch<br />
               The Application
             </AppLink>
