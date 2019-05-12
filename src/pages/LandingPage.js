@@ -68,7 +68,8 @@ const AppLink = styled(Link)`
 
 const BackgroundContainer = styled.div`
   background: url(./assets/back_project_page.png) no-repeat center bottom;
-  background-size: 100% auto;
+  background-size: 80% auto;
+  background-position: 0 bottom;
 `;
 
 
@@ -127,9 +128,9 @@ class LandingPage extends Component {
           <div className="column">
             <p className="subtitle">
               Video
-            </p><
+            </p>
             
-            <iframe width="100%" height="375" src="https://www.youtube.com/embed/Zlb_6Ro5L3Q" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="375" src="https://www.youtube.com/embed/Zlb_6Ro5L3Q" frameborder="0"  allowFullscreen></iframe>
           </div>
           <div className="column">
 
