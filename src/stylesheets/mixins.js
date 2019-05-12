@@ -43,6 +43,15 @@ const LABEL_REGULAR_TYPE = `
   text-rendering: optimizeLegibility;
 `;
 
+const LABEL_ITALIC_TYPE = `
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  line-height: 1.6em;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+`;
+
 const ABSOLUTE_MIDDLE = `
   transform: translate(0, -50%);
 `;
@@ -61,6 +70,7 @@ export default {
   BOLD_TYPE,
   LABEL_BOLD_TYPE,
   LABEL_REGULAR_TYPE,
+  LABEL_ITALIC_TYPE,
   ABSOLUTE_CENTER,
   ABSOLUTE_CENTER_MIDDLE,
   ABSOLUTE_MIDDLE

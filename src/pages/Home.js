@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, 
-        SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend} from '../components';
-import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, changeTextVisualization} from '../actions';
+        SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
+import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories} from '../actions';
 import axios from 'axios';
 import 'intersection-observer';
 import scrollama from 'scrollama';
@@ -177,7 +177,32 @@ class Home extends Component {
           break;
         case 'initTextVisualization':
           this.props.dispatch(changeTextVisualization(true));
+          this.props.dispatch(removeAllTextCategories());
           break;
+        case 'changeTextVisualizationWhy':
+          // this.props.dispatch(change)
+          this.props.dispatch(removeAllTextCategories());
+          this.props.dispatch(addTextCategorySelected(1, {id: 1 }));
+          this.props.dispatch(addTextCategorySelected(3, {id: 3 }));
+          this.props.dispatch(addTextCategorySelected(13, {id: 13 }));
+          break;
+        case 'changeTextVisualizationHow':
+          this.props.dispatch(removeAllTextCategories());
+          this.props.dispatch(addTextCategorySelected(7, {id: 7 }));
+          this.props.dispatch(addTextCategorySelected(8, {id: 8 }));
+          this.props.dispatch(addTextCategorySelected(9, {id: 9 }));
+          
+          break;
+        
+        case 'changeTextVisualizationStory':
+
+          this.props.dispatch(removeAllTextCategories());
+          this.props.dispatch(addTextCategorySelected(4, {id: 4 }));
+          this.props.dispatch(addTextCategorySelected(11, {id: 11 }));
+          this.props.dispatch(addTextCategorySelected(15, {id: 15 }));
+
+          break;
+
         case 'final':
           this.props.dispatch(changeTextVisualization(false));
           break;
@@ -197,6 +222,7 @@ class Home extends Component {
 
     let actionName = e.element.dataset.actionName;
     // console.log(actionName, "exit", e.direction);
+    console.log(actionName, "exit");
     if (!_.isUndefined(actionName)) {
 
       switch (actionName) {
@@ -219,6 +245,45 @@ class Home extends Component {
           if (e.direction === "up") {
 
             this.props.dispatch(changeTextVisualization(false));
+          }
+          
+          break;
+         case 'changeTextVisualizationWhy':
+          if (e.direction === "up") {
+            this.props.dispatch(changeTextVisualization(true));
+            this.props.dispatch(removeAllTextCategories());
+          }
+          
+          break;
+        case 'changeTextVisualizationHow':
+          if (e.direction === "up") {
+            this.props.dispatch(changeTextVisualization(true));
+
+            this.props.dispatch(removeAllTextCategories());
+            this.props.dispatch(addTextCategorySelected(1, {id: 1 }));
+            this.props.dispatch(addTextCategorySelected(3, {id: 3 }));
+            this.props.dispatch(addTextCategorySelected(13, {id: 13 }));
+          }
+          
+          break;
+        case 'changeTextVisualizationStory':
+          if (e.direction === "up") {
+            
+          this.props.dispatch(removeAllTextCategories());
+          this.props.dispatch(addTextCategorySelected(7, {id: 7 }));
+          this.props.dispatch(addTextCategorySelected(8, {id: 8 }));
+          this.props.dispatch(addTextCategorySelected(9, {id: 9 }));
+          }
+          
+          break;
+        case 'final':
+          if (e.direction === "up") {
+            this.props.dispatch(changeTextVisualization(true));
+
+            this.props.dispatch(removeAllTextCategories());
+            this.props.dispatch(addTextCategorySelected(4, {id: 4 }));
+            this.props.dispatch(addTextCategorySelected(11, {id: 11 }));
+            this.props.dispatch(addTextCategorySelected(15, {id: 15 }));
           }
           
           break;

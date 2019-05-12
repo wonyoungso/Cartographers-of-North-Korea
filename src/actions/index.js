@@ -7,6 +7,14 @@ export const reset = () => {
   }
 }
 
+export const removeAllTextCategories = () => {
+  return {
+    type: "REMOVE_ALL_TEXT_CATEGORIES",
+    payload: {
+      
+    }
+  }
+}
 export const changeOsmUserHistories = (osmUserHistories) => {
   return {
     type: 'CHANGE_OSM_USER_HISTORIES',

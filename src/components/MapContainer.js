@@ -203,6 +203,7 @@ class MapContainer extends Component {
   
       // console.log("currentFeature", currentFeature);
       if (_.isNull(currentFeature)) {
+        this.map.stop();
         this.map.flyTo({ center: center, zoom: zoom });
         if (!_.isUndefined(this.map.getLayer("currentFeature-point"))) {
   
@@ -224,10 +225,12 @@ class MapContainer extends Component {
 
       if (_.isNull(prevProps.selectedOsmUserResponse) && !_.isNull(this.props.selectedOsmUserResponse)){
         
+        this.map.stop();
         this.map.flyTo({ center: [127.1205757172753, 38.76675314095931], zoom: 6.2 });
       
       } else if (!_.isNull(prevProps.selectedOsmUserResponse) && _.isNull(this.props.selectedOsmUserResponse)) {
 
+        this.map.stop();
         this.map.flyTo({ center: center, zoom: zoom });
       }
 

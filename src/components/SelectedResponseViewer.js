@@ -8,6 +8,8 @@ import { changeSelectedOsmUserResponse, changeOsmUserHistories, changeOsmUserHis
 import axios from 'axios';
 import * as d3 from 'd3';
 import moment from 'moment';
+import { CATEGORIES_COLORS } from '../constants/defaults';
+import { numberWithDelimiter } from '../utils';
 import chroma from 'chroma-js';
 
 const Fragment = React.Fragment;
@@ -32,7 +34,9 @@ const RespContainer = styled.div`
     
     max-height: 300px;
     overflow-y: scroll;
-    line-height: 1.6;
+    line-height: 1.8;
+    padding-bottom: 50px;
+
   }
   span {
     padding: 3px 5px;
@@ -94,6 +98,7 @@ const CategorySpan = styled.span`
   padding: 2px 5px;
   line-height: 1.7;
   margin-right: 5px;
+  hyphens: auto;
   word-break: break-all;
 `
 
@@ -101,11 +106,11 @@ const RespInfoArea = styled.div`
   display: flex;
   justify-content: space-between;
   position: absolute;
-  
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
   bottom: 0px;
-  padding-top: 5px;
   background: white;
-  width: calc(100% - 10px);
+  width: 100%;
 
 
   div.left-inner {
@@ -192,7 +197,7 @@ class SelectedResponseViewer extends Component {
   render() {
     let { selectedOsmUserResponse, responseCategories, osmUserHistories, osmUserHistoriesIdx } = this.props;
     // debugger;
-    let colorScale = d3.scaleOrdinal(d3.schemeSet3).domain(_.map(responseCategories, rc => { return rc.id}));
+    let colorScale = d3.scaleOrdinal().domain(_.map(responseCategories, rc => { return rc.id})).range(CATEGORIES_COLORS);
     let selectedColorCategories = this.getSelectedColorCategories(selectedOsmUserResponse, responseCategories, colorScale);
     let osmHistory;
 
@@ -220,9 +225,9 @@ class SelectedResponseViewer extends Component {
                 _.map(selectedOsmUserResponse.responses, (r, i) => {
                   
                   let bgColor = r.category_id === 12 ? "transparent": colorScale(r.category_id);
-                  
+                  let color = bgColor === "transparent" ? "black" : "white";
                   return (
-                    <span key={i} style={{backgroundColor: bgColor}}>
+                    <span key={i} style={{backgroundColor: bgColor, color: color }}>
                       {r.resp}
                     </span>
                   )
@@ -240,7 +245,7 @@ class SelectedResponseViewer extends Component {
                 {
                   _.map(selectedColorCategories, scc => {
                     return (
-                      <CategorySpan key={scc.id} style={{ backgroundColor: scc.color }}>
+                      <CategorySpan key={scc.id} style={{ backgroundColor: scc.color, color: "white" }}>
                         {scc.category_name}
                       </CategorySpan>
                     )
@@ -248,8 +253,8 @@ class SelectedResponseViewer extends Component {
                 }
               </div>
               <div className="right-inner">
-                - P{ selectedOsmUserResponse.id }<br/>
-                <i>Heavy Contributor</i>
+                { selectedOsmUserResponse.anonymized_name }<br/>
+                <i>{ numberWithDelimiter(selectedOsmUserResponse.all_count) } Contribution</i>
               </div>
             </RespInfoArea>
           </div>

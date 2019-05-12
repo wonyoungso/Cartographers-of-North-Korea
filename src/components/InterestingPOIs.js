@@ -48,6 +48,13 @@ const Date = styled.div `
   font-size:0.6em;
   color: #AAA;
 `;
+
+const Disclaimer = styled.div `
+  ${mixins.LABEL_ITALIC_TYPE}
+  font-size:0.5em;
+  color: #AAA;
+`;
+
 class InterestingPOIs extends Component {
 
 
@@ -70,11 +77,14 @@ class InterestingPOIs extends Component {
               Contributor
             </Label>
             <Value>
-              {this.props.osm_user.osm_user}
+              {this.props.osm_user.anonymized_name}*
             </Value>
             <Date>
               {moment.unix(this.props.osm_timestamp).format("MMMM DD, YYYY")}
             </Date>
+            <Disclaimer>
+              * Names have been changed for privacy
+            </Disclaimer>
           </TitleArea>
         </POIBox>
       </InterestingPOIsContainer>

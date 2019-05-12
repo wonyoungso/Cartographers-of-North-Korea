@@ -19,6 +19,7 @@ import TextVisualization from './TextVisualization';
 import TextVisualizationResponses from './TextVisualizationResponses';
 import UserResponse from './UserResponse';
 import SelectedResponseViewer from './SelectedResponseViewer';
+import NumberContributionLegend from './NumberContributionLegend';
 
 export {
   ChoroplethMap,
@@ -41,5 +42,6 @@ export {
   TextVisualization,
   UserResponse,
   TextVisualizationResponses,
-  SelectedResponseViewer
+  SelectedResponseViewer,
+  NumberContributionLegend
 };

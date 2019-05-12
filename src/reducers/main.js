@@ -33,6 +33,11 @@ export default function screenReducer(state = DEFAULT_STATE, action){
           [action.payload.id]: action.payload.textCategoryInfo
         }
       }
+    case "REMOVE_ALL_TEXT_CATEGORIES":
+      return {
+        ...state,
+        selectedTextCategory: {}
+      }
     case 'REMOVE_TEXT_CATEGORY':
       let selectedTextCategory = { ...state.selectedTextCategory };
 

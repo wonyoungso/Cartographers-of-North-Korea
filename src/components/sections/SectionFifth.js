@@ -44,7 +44,7 @@ class SectionFifth extends Component {
             * Methodology
           </MethodologyTitle>
           <MethodologyPG>
-            OpenStreetMap data is used for the research. and this data is under the Open Database License (ODbL) version 1.0 share-alike license for data. for aggregating the changeset data, I used the center point of each boundary that each changeset has.
+            OpenStreetMap data is used for the research. and this data is under the Open Database License (ODbL) version 1.0 share-alike license for data. for aggregating the changeset data, I used the center point of each changeset boundary. All contributors' screen name is anonymized for protecting the individual privacy.
           </MethodologyPG>
         </NonStickyFinal>
       </SectionFifthContainer>

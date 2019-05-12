@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import mixins from '../stylesheets/mixins';
 import { Gutter } from '../stylesheets/components';
 
-const Fragment = React.Fragment;
+// const Fragment = React.Fragment;
 
 const SubtitleKo = styled.div`
   ${mixins.BOLD_TYPE}
@@ -129,7 +129,7 @@ class LandingPage extends Component {
               Video
             </p>
             
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/jT7cqkCgtPw" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="375" src="https://www.youtube.com/embed/jT7cqkCgtPw" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div className="column">
 

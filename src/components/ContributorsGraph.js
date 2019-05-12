@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import mixins from '../stylesheets/mixins';
 import {changeWorldMapIndividual } from '../actions';
-import {KoreanLegend, IndividualInfo} from './';
+import {KoreanLegend, IndividualInfo, NumberContributionLegend} from './';
 import {SectionContainer, Box, Sticky} from '../stylesheets/components';
 import osm_stats from '../constants/osm_users.json';
 import * as d3 from 'd3';
@@ -25,6 +25,14 @@ const Title = styled.div`
   top: 20px;
   color: black;
   font-size: 0.9em;
+
+  div.disclaimer {
+    ${mixins.LABEL_ITALIC_TYPE}
+    margin-top:5px;
+    font-size:0.7em;
+    text-align: center;
+    color:#AAA;
+  }
 `;
 
 const Tooltip = styled.div`
@@ -332,6 +340,10 @@ class ContributorsGraph extends Component {
         <ContributorsGraphBox style={{ height: this.props.height }}>
           <Title>
             Distribution of Contributors by # of Contribution
+
+            <div className="disclaimer">
+              * Names have been changed for privacy
+            </div>
           </Title>
           <svg ref={this.refGraph} width={this.props.width} height={this.props.height}>
           </svg>
@@ -340,7 +352,7 @@ class ContributorsGraph extends Component {
             _.isNull(currentHover) ? 
             null : 
             <Tooltip style={{ left: currentHover.cx - 100, top: Number(currentHover.cy) - 140 }}>
-              { currentHover.osm_user }
+              { currentHover.anonymized_name }*
               <hr />
               <ToolTipLabelArea>
                 <ToolTipLabel>
@@ -369,6 +381,7 @@ class ContributorsGraph extends Component {
             </Tooltip>
           }
           <KoreanLegend show={graphMode === "korean"} />
+          <NumberContributionLegend scale={this.colorScale} show={!cholopleth && graphMode !== "korean"} />
           {
             _.isNull(currentIndividual) || _.isUndefined(currentIndividual) ? 
             null : <IndividualInfo />

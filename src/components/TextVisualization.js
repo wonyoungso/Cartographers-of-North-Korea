@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { addTextCategorySelected, removeTextCategorySelected, changeOsmUserReponseData } from '../actions';
 import _ from 'lodash';
-import { SUBCATEGORY_SELECT } from '../constants/defaults';
+import { SUBCATEGORY_SELECT, CATEGORIES_COLORS } from '../constants/defaults';
 import * as d3 from 'd3';
+import {TextVisualizationResponses } from './';
 
 const Fragment = React.Fragment;
 const Bar = styled.div`
@@ -22,11 +23,12 @@ const Bar = styled.div`
   }
 
   h3 {
-    font-size: 1.4em;
+    font-size: 1.0em;
     line-height: 1.1;
-    color:black;
-    margin-bottom: 5px;
+    color: black;
+    margin-bottom: 7px;
     font-weight: 700;
+    text-indent: -4px;
   }
 
   p {
@@ -40,27 +42,30 @@ const Bar = styled.div`
 `;
 
 const CategoryLink = styled.a`
-  font-size: 0.85em;
-  display: block;
-  margin-bottom: 8px;
+  font-size: 0.7em;
+  display: inline-block;
+  margin-bottom: 6px;
+  margin-left: -5px;
+  padding: 4px;
   line-height: 1.2;
   cursor: pointer;
+  background:white;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   color:black;
 `
 
 const UnCategoryLink = styled.a`
-  font-size: 0.85em;
+  font-size: 0.7em;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   margin-left: -5px;
   line-height: 1.2;
-  padding: 5px;
+  padding: 4px;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  color:black;
+  color:white;
   position:relative;
   padding-right:20px;
 
@@ -73,7 +78,26 @@ const UnCategoryLink = styled.a`
     position: absolute;
   }
 `
-
+const ArrowArea = styled.div`
+  position: fixed;
+  z-index: 9;
+  opacity: 1;
+  transition: 0.4s opacity;
+  left: 180px;
+  height: 32px;
+  width: calc(100% - 190px);
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  
+  hr {
+    border:none;
+    position:absolute;
+    top:20px;
+    border:1px solid #888;
+    width:100%;
+  }
+`;
 
 
 class TextVisualization extends Component {
@@ -104,7 +128,7 @@ class TextVisualization extends Component {
   render() {
     let { textVisualization, selectedTextCategory, responseCategories } = this.props;
     let subCategories = _.groupBy(responseCategories, c => { return c.subcategory_id; });
-    let colorScale = d3.scaleOrdinal(d3.schemeSet3).domain(_.map(responseCategories, rc => { return rc.id}));
+    let colorScale = d3.scaleOrdinal().domain(_.map(responseCategories, rc => { return rc.id})).range(CATEGORIES_COLORS);
     
     return (
       <Fragment>
@@ -134,7 +158,14 @@ class TextVisualization extends Component {
           }
         </Bar>
         
-        <Bar style={{right: 0, opacity: textVisualization ? 1 : 0}}>
+        <TextVisualizationResponses />
+
+        <ArrowArea style={{opacity: textVisualization ? 1 : 0}}>
+          <img src={`${process.env.PUBLIC_URL}/assets/more_data_arrow.svg`} />
+          <img src={`${process.env.PUBLIC_URL}/assets/less_data_arrow.svg`} />
+        </ArrowArea>
+
+        {/* <Bar style={{right: 0, opacity: textVisualization ? 1 : 0}}>
           <section>
             <h3>
               Responses<br />
@@ -145,7 +176,7 @@ class TextVisualization extends Component {
               contributors
             </p>
           </section>
-        </Bar>
+        </Bar> */}
       </Fragment>
     )
   }
