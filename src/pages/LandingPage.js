@@ -127,9 +127,9 @@ class LandingPage extends Component {
           <div className="column">
             <p className="subtitle">
               Video
-            </p>
+            </p><
             
-            <iframe width="100%" height="375" src="https://www.youtube.com/embed/jT7cqkCgtPw" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="375" src="https://www.youtube.com/embed/Zlb_6Ro5L3Q" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div className="column">
 
@@ -150,7 +150,7 @@ class LandingPage extends Component {
             </p>
 
             <p>
-              OpenStreetMap data is under the Open Database License (ODbL) version 1.0 share-alike license for data. for aggregating the changeset data, I used the center point of each boundary.
+              OpenStreetMap data is under the Open Database License (ODbL) version 1.0 share-alike license for data. for aggregating the changeset data, I used the center point of each boundary. All the OSM contributors' screen name is changed for protecting individuals' privacy.
             </p>
           </div>
         </Container>
