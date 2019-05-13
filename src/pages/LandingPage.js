@@ -47,9 +47,9 @@ const Container = styled.div`
 
   p.desc {
     font-family: "Caponi Display";
-    font-weight: 400;
-    line-height: 1.4;
-    font-size:1.5em;
+    font-weight: 400;    
+    line-height: 1.3;
+    font-size: 1.4em;
   }
 `;
 
