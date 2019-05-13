@@ -57,19 +57,21 @@ const AppLink = styled(Link)`
   background-color: black;
   color: white;
   display: inline-block;
-  padding: 12px 16px;
-  border-radius: 10px;
   font-size: 1.3em;
   font-family: "Caponi Display";
   font-weight: 700;
   line-height: 1.2;
+
+  padding: 13px 16px 8px;
+  border-radius: 5px;
 `;
 
 
 const BackgroundContainer = styled.div`
   background: url(./assets/back_project_page.png) no-repeat center bottom;
-  background-size: 80% auto;
-  background-position: 0 bottom;
+  background-size: 81% auto;
+  background-position: right bottom;
+
 `;
 
 
@@ -138,7 +140,7 @@ class LandingPage extends Component {
               Paper
             </p>
 
-            <a href={`${process.env.PUBLIC_URL}/assets/wso-final-paper.docs`}>
+            <a href={`${process.env.PUBLIC_URL}/assets/wso-final-paper.docx`}>
               Wonyoung So. Cartographers of North Korea.
             </a>
           </div>
