@@ -113,7 +113,7 @@ class LandingPage extends Component {
               Abstract
             </p>
             <p className="desc">
-              The focus of this project is to discuss the collaborative mapping strategies of contributors in uncharted territories, using North Korea as a case study. OpenStreetMap (OSM) enables “armchair mappers” to map a territories such as North Korea in which the government has controlled internet access to its residents. Here, I ask the questions of who is mapping to North Korea, which tools and methods the contributors use to have access and represent North Korea, and which are the motivations behind such mapping endeavor. To do this, I analyze the technical aspects of OSM data in North Korea, and analyze the structured correspondence I exchanged with 889 contributors. 
+              The focus of this project is to discuss the collaborative mapping strategies of contributors in uncharted territories, using North Korea as a case study. OpenStreetMap (OSM) enables “armchair mappers” to map territories such as North Korea in which the government has controlled internet access to its residents. Here, I ask the questions of who is mapping to North Korea, which tools and methods the contributors use to have access and represent North Korea, and which are the motivations behind such mapping endeavor. To do this, I analyze the technical aspects of OSM data in North Korea, and analyze the structured correspondence I exchanged with 889 contributors.
             </p>
           </div>
           <div className="column">
@@ -138,8 +138,8 @@ class LandingPage extends Component {
               Paper
             </p>
 
-            <a href="#">
-              Wonyoung So. Cartographers of North Korea: Technical, political, and social aspects inherent to mapping.
+            <a href={`${process.env.PUBLIC_URL}/assets/wso-final-paper.docs`}>
+              Wonyoung So. Cartographers of North Korea.
             </a>
           </div>
         </Container>
