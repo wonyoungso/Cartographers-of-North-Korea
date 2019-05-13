@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { windowResize, changeDataLoaded, changeTrips, changeCurrentTime } from './actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { HashRouter, BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 // import SummaryPage from './pages/SummaryPage';
 import LandingPage from './pages/LandingPage';
@@ -35,12 +35,12 @@ class App extends Component {
   render() {
 
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Fragment>
           <Route path={process.env.PUBLIC_URL + '/'} component={LandingPage} />
           <Route path={process.env.PUBLIC_URL + '/viz'} component={Home} />
         </Fragment>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
