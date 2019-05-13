@@ -35,12 +35,12 @@ class App extends Component {
   render() {
 
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter>
         <Fragment>
-          <Route path={'./'} component={LandingPage} />
-          <Route path={'./viz'} component={Home} />
+          <Route path={process.env.PUBLIC_URL + '/'} component={LandingPage} />
+          <Route path={process.env.PUBLIC_URL + '/viz'} component={Home} />
         </Fragment>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
