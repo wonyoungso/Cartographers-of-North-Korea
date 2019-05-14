@@ -140,7 +140,7 @@ class LandingPage extends Component {
               Paper
             </p>
 
-            <a href={`${process.env.PUBLIC_URL}/assets/wso-final-paper.docx`}>
+            <a href={`${process.env.PUBLIC_URL}/assets/wso-final-paper.pdf`}>
               Wonyoung So. Cartographers of North Korea.
             </a>
           </div>
