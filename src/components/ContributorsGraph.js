@@ -342,7 +342,7 @@ class ContributorsGraph extends Component {
             Distribution of Contributors by # of Contribution
 
             <div className="disclaimer">
-              * Names have been changed for privacy
+              * Names have been anonymized for privacy
             </div>
           </Title>
           <svg ref={this.refGraph} width={this.props.width} height={this.props.height}>
@@ -352,7 +352,7 @@ class ContributorsGraph extends Component {
             _.isNull(currentHover) ? 
             null : 
             <Tooltip style={{ left: currentHover.cx - 100, top: Number(currentHover.cy) - 140 }}>
-              { currentHover.anonymized_name }*
+              P{ currentHover.id }*
               <hr />
               <ToolTipLabelArea>
                 <ToolTipLabel>

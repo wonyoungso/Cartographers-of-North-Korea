@@ -253,7 +253,7 @@ class SelectedResponseViewer extends Component {
                 }
               </div>
               <div className="right-inner">
-                { selectedOsmUserResponse.anonymized_name }<br/>
+                P{ selectedOsmUserResponse.id }<br/>
                 <i>{ numberWithDelimiter(selectedOsmUserResponse.all_count) } Contribution</i>
               </div>
             </RespInfoArea>

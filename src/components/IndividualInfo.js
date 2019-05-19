@@ -100,7 +100,7 @@ class IndividualInfo extends Component {
             Name
           </Label>
           <Value>
-            {currentIndividual.osm_user}
+            P{currentIndividual.id}
           </Value>
         </Area>
         <Area>

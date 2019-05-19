@@ -77,13 +77,13 @@ class InterestingPOIs extends Component {
               Contributor
             </Label>
             <Value>
-              {this.props.osm_user.anonymized_name}*
+              P{this.props.osm_user.id}*
             </Value>
             <Date>
               {moment.unix(this.props.osm_timestamp).format("MMMM DD, YYYY")}
             </Date>
             <Disclaimer>
-              * Names have been changed for privacy
+              * Names have been anonymized for privacy
             </Disclaimer>
           </TitleArea>
         </POIBox>
