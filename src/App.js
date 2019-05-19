@@ -37,8 +37,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Fragment>
-          <Route path={process.env.PUBLIC_URL + '/'} component={LandingPage} />
-          <Route path={process.env.PUBLIC_URL + '/viz'} component={Home} />
+          <Route path={process.env.PUBLIC_URL + '/'} component={Home} />
         </Fragment>
       </BrowserRouter>
     );
