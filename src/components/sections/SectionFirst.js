@@ -13,7 +13,7 @@ class SectionFirst extends Component {
         height: this.props.windowHeight * 0.7
       }} className="trigger" data-action-name="changeEmptyMap">
         <NonSticky>
-          The residents of North Korea has limited accessibility to the internet for research purposes, almost all of the citizens have access to an intranet called “Kwangmyong,” and the internet connectivity has not offered to the public.
+          The population of North Korea only has extremely limited internet access; while a select group of people can access the internet for research purposes, everybody else can only access a countrywide intranet called Kwangmyong.
         </NonSticky>
 
       </IntroContainer>

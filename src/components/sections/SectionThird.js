@@ -48,7 +48,7 @@ class SectionThird extends Component {
       <SectionThirdContainer>
         <GradientSticky height={this.props.windowHeight} />
         <NonSticky className="trigger" data-action-name="initGraphScene">
-          It is true that it is hard to know the contributors only studying the OSM data, but the data shows some characteristics about them. First, the plot shows that the contributors are formed a power-law distribution, and the top 10 contributors drew 61 percent of the map.
+          Although it is hard to know about the contributors only by the OSM data, but the data shows some characteristics about them. First, the plot shows that the top 10 contributors drew 61 percent of the map, thus forming a power-law graph.
         </NonSticky>
 
         <div style={{
@@ -71,7 +71,7 @@ class SectionThird extends Component {
         </div>
         
         <NonSticky className="trigger" data-action-name="changeGraphKorean">
-          Second, In the contributors who labeled a name to the map objects, 62% of the contributors labeled them in Korean. 
+          Second, 62% of the contributors labeled map objects in Korean, including the top five contributors.
         </NonSticky>
         
 

@@ -23,7 +23,7 @@ class SectionFourth extends Component {
     return (
       <SectionFourthContainer style={{ height: this.props.windowHeight * 3.5}}>
         <NonSticky className="trigger" data-action-name="initWorldMap">
-          Third, OpenStreetMap has changesets, which is history of past contributions of each user. Using this datasets, it can be seen which regions, other than North Korea, have been the contributors’ interests. When summing up every changesets of 887 contributors, it does not give much insights, although there are some countries that has been in good relationship with North Korea such as Germany, China, and Russia.
+          Contributors' activity can also be estimated by means of OSM changesets, which are a history of each user’s past contributions. Using these changesets, one can see which regions other than North Korea contributors have also worked on. 
         </NonSticky>
         
 
@@ -40,7 +40,7 @@ class SectionFourth extends Component {
         <Gutter height={this.props.windowHeight * 0.5} />
 
         <NonSticky className="trigger" data-action-name="changeWorldMapHeavyContributor">
-          However, there are some countries coming up with heavy contributors. For instance, the top 20 contributors who use Korean also contributed to the countries as follows: China, Germany, India, United States, and South Korea.
+          For instance, the top 20 contributors who used Korean to label map objects also contributed to the OSM dataset for China, Germany, India, the United States, and South Korea.
         </NonSticky>  
         
 
@@ -48,7 +48,7 @@ class SectionFourth extends Component {
 
 
         <NonSticky className="trigger" data-action-name="changeWorldMapHeaviestContributor">
-          If the number of contributor is reduced to 5, the list of countries changed as follows: India, Germany, Ukraine, Russia, and Japan. It is also interesting to see the individual user’s spatial distribution of contributions.
+          For the top five contributors, this list changes slightly: India, Germany, Ukraine, Russia, and Japan.
         </NonSticky>
       </SectionFourthContainer>
     );

@@ -20,7 +20,7 @@ class SectionSecond extends Component {
       <SecondContainer className="trigger" data-action-name="changeChronicleMap">
         <Sticky>
           <Box>
-            However, the quality of OSM data in North Korea is simply amazing; 889 users contributed 324,415 data points. But, Who gets benefits from this map? 
+            For a country that is closed to the internet, the quality of OSM data in North Korea is extraordinary: 324,415 data points drawn by 889 contributors since 2007.
           </Box>
         </Sticky>
 
