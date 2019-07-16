@@ -60,9 +60,9 @@ class CholoplethLegend extends Component {
     if (!_.isNull(currentCountryJSON) && cholopleth) {
       let width = 300;
 
-      var extent = d3.extent(currentCountryJSON.country_counts, cc => {
+      var extent = [0, d3.max(currentCountryJSON.country_counts, cc => {
         return cc.count;
-      })
+      })]
 
       var finalDomain = [extent[0],
       extent[0] + (extent[1] - extent[0]) / 9 * 1,

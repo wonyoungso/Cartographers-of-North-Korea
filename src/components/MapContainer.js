@@ -403,9 +403,9 @@ class MapContainer extends Component {
         "#2855a4",
         "#253494"])
 
-    var extent = d3.extent(currentCountryJSON.country_counts, cc => {
+    var extent = [0, d3.max(currentCountryJSON.country_counts, cc => {
       return cc.count;
-    })
+    })];
 
 
     var finalDomain = [extent[0],
@@ -428,7 +428,7 @@ class MapContainer extends Component {
     });
 
 
-    expression.push("rgba(0,0,0,0)");
+    expression.push("#ffffcc");
 
     this.map.setPaintProperty("world-map-layer", "fill-color", expression);
   }
