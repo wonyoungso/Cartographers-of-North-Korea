@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import moment from 'moment';
 import { numberWithDelimiter } from '../utils';
 import { ContDistribution, ChoroplethMap } from './'
 import worldData from '../constants/world_data.json';
 
-const Fragment = React.Fragment;
 
 class MessageContributorInfo extends Component {
   getTopThreeCountries(countryCounts){
@@ -15,8 +13,8 @@ class MessageContributorInfo extends Component {
     let splicedCounts = _.filter(sortedCounts, sc => { return sc.count > 0; }).splice(0, 5);
 
     _.each(splicedCounts, (sp, i) => {
-      splicedCounts[i].nameKo = _.find(worldData, wd => { return wd.id == sp.world_id; }).name_ko;
-      splicedCounts[i].nameEn = _.find(worldData, wd => { return wd.id == sp.world_id; }).name_en;
+      splicedCounts[i].nameKo = _.find(worldData, wd => { return wd.id === sp.world_id; }).name_ko;
+      splicedCounts[i].nameEn = _.find(worldData, wd => { return wd.id === sp.world_id; }).name_en;
     })
     return splicedCounts;
 
@@ -85,7 +83,7 @@ class MessageContributorInfo extends Component {
                 _.map(topThreeCountries, (c, i) => { 
                   return( 
                     <span key={i}>
-                      { `${c.nameKo}${i == topThreeCountries.length - 1 ? "" : ", "}` } 
+                      { `${c.nameKo}${i === topThreeCountries.length - 1 ? "" : ", "}` } 
                     </span>
                   );
                 })

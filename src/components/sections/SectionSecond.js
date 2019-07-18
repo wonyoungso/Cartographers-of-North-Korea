@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { InterestingPOIs } from '../';
 import styled from 'styled-components';
-import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky, NonSticky} from '../../stylesheets/components';
-import { rgba } from 'style-value-types';
+import {SectionContainer, Box, Sticky } from '../../stylesheets/components';
 
 const SecondContainer = styled(SectionContainer)`
   padding: 200px 0;

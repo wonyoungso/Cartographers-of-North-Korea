@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import moment from 'moment';
 
 const Fragment = React.Fragment;
@@ -8,7 +7,7 @@ const Fragment = React.Fragment;
 class ContributorInfo extends Component {
   render() {
     let { currentFeature } = this.props;
-    var a = 1;
+
     return (
       <Fragment>
         <div className="contributor-info left">

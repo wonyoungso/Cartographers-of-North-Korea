@@ -24,21 +24,6 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const DateArea = styled.div`
-  position:absolute;
-
-  border: 1px solid #CCCCCC;
-  padding: 4px 5px;
-  background-color: white;
-  
-  ${mixins.LABEL_REGULAR_TYPE}
-  right: 0;
-  top: 2px;
-  transform: translate(87%, 0);
-  width: auto;
-  font-size:0.9em;
-  color: #888;
-`;
 
 class TitleHeader extends Component {
   render() {

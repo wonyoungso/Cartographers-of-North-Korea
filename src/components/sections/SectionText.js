@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import mixins from '../../stylesheets/mixins';
 import { TextVisualizationResponses } from '../';
-import {SectionContainer, Box, Sticky, NonSticky, Gutter } from '../../stylesheets/components';
+import {SectionContainer,  NonSticky, Gutter } from '../../stylesheets/components';
 import _ from 'lodash';
 
 const SectionTextContainer = styled(SectionContainer)`
@@ -18,18 +17,10 @@ const SectionTextContainer = styled(SectionContainer)`
 `;
 
 
-const GradientSticky = styled.div`
-  position: sticky;
-  background-image: linear-gradient(-180deg, rgba(231, 247, 251, 0.83) 22%, rgba(231, 247, 251, 0.00) 81%);
-  top: 0;
-  width: 100%;
-  z-index:2;
-  height: ${props => props.height }px;
-`;
 
 class SectionText extends Component {
   render() {
-    let { selectedOsmUserResponse, windowHeight } = this.props;
+    let { selectedOsmUserResponse } = this.props;
     return (
       <SectionTextContainer className={selectedOsmUserResponse ? "hide" : "" } style={{ height: 8000}}>
         <div style={{ height: this.props.windowHeight }}></div>
@@ -42,7 +33,7 @@ class SectionText extends Component {
         <TextVisualizationResponses />
         <Gutter h={500} />
         <NonSticky className="trigger" data-action-name="changeTextVisualizationWhy" style={{ zIndex: 11 }}>
-          Although the contributors' motivation is mostly for fun and pure curiosity—such as searching for empty space in OSM—, they were motivated by specific and more altruistic reasons; in particular, with the respect of advocating open mapping, they wanted North Koreans to use the map in the near future, such as for escaping their territory. 
+          Although the contributors' motivation is mostly for fun and pure curiosity—such as searching for empty space in OSM—, they were motivated by diverse reasons; in particular, with the respect of advocating open mapping, they wanted North Koreans to use the map in the near future, such as for escaping their territory. 
         </NonSticky>
         <Gutter h={1500} />
         <NonSticky className="trigger" data-action-name="changeTextVisualizationHow" style={{ zIndex: 11 }}>

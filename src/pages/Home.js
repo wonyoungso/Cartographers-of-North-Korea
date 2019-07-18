@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, 
-        SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
+import { MapContainer, TextVisualization, SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
 import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories} from '../actions';
-import axios from 'axios';
 import 'intersection-observer';
 import scrollama from 'scrollama';
 import { Intro, SectionFirst, SectionSecond, SectionThird, SectionFourth, SectionFifth, SectionOddPOIs, SectionText } from '../components/sections';
-import { HeaderContainer } from '../components';
 import _ from 'lodash';
 import interestingPOIs from '../constants/interesting_pois.json';
 import { scaleLinear } from 'd3';
@@ -296,7 +293,7 @@ class Home extends Component {
   }
 
   render() {
-    let { currentFeature, selectedOsmUserResponse } = this.props;
+    let {  selectedOsmUserResponse } = this.props;
 
     return (
       <Fragment>

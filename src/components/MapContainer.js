@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMapLoaded, changeCurrentSeq, changeOsmUserHistoriesIdx } from '../actions';
-import { LayerGenerator } from './';
+import { changeMapLoaded, changeOsmUserHistoriesIdx } from '../actions';
 import { toWgs84 }  from 'reproject';
 import proj4 from 'proj4';
 import turf from 'turf';
@@ -40,8 +39,6 @@ class MapContainer extends Component {
   }
   
   handleStyleLoad(e) {
-    console.log("load");
-    let { currentFeature, currentTimeStamp } = this.props;
     this.props.dispatch(changeMapLoaded(true));
   
     this.map.addSource('nk-line', {
@@ -189,7 +186,7 @@ class MapContainer extends Component {
 
 
   componentDidUpdate(prevProps){
-    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode, selectedOsmUserResponse, osmUserHistories, osmUserHistoriesIdx } = this.props;
+    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode, osmUserHistories, osmUserHistoriesIdx } = this.props;
 
 
     let nkTileVisibility = nkTile ? 'visible' : 'none';
