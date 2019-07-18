@@ -115,31 +115,14 @@ class ContributorsGraph extends Component {
         "#253494"]);
 
     this.state = {
-      currentHover: null,
-      osmUsersData: null
+      currentHover: null
     }
   
   }
 
-  componentDidMount(){
-    this.loadData();
-  }
-
-  loadData(){
-    axios.all([axios.get('https://nkosm.wonyoung.so/summaries.json')])
-    .then(axios.spread((response) => {
-      if (response.data.success) {
-
-        this.setState({
-          osmUsersData: response.data
-        });
-      }
-    }));
-  }
-
   initSimulation(props){
 
-    var simulation = d3.forceSimulation(this.state.osmUsersData.stats.osm_users)
+    var simulation = d3.forceSimulation(this.props.osmUsersDataStats.stats.osm_users)
       .force("x", d3.forceX(d => { return this.xScale(d.all_count); }).strength(1))
       .force("y", d3.forceY(props.height / 2 - 20))
       .force("collide", d3.forceCollide(props.padding))
@@ -171,7 +154,7 @@ class ContributorsGraph extends Component {
     var _this = this;
     this.circleGraph = svg.append("g")
       .selectAll("circle")
-      .data(this.state.osmUsersData.stats.osm_users)
+      .data(this.props.osmUsersDataStats.stats.osm_users)
       .enter().append("circle")
       .attr("fill", d => { return this.colorScale(d.all_count) })
       .attr("stroke", "#eee")
@@ -281,18 +264,18 @@ class ContributorsGraph extends Component {
   componentDidUpdate(prevProps, prevState){
     let { graphMode, choloplethMode, cholopleth, currentIndividual } = this.props;
    
-    if (prevState.osmUsersData !== this.state.osmUsersData) {
+    if (prevProps.osmUsersDataStats !== this.props.osmUsersDataStats) {
 
-      if (!_.isNull(this.state.osmUsersData)) {
+      if (!_.isNull(this.props.osmUsersDataStats)) {
         this.xScale = d3.scaleLog()
-          .domain(d3.extent(this.state.osmUsersData.stats.osm_users, d => d.all_count));
+          .domain(d3.extent(this.props.osmUsersDataStats.stats.osm_users, d => d.all_count));
         this.d3Init();
 
       }
       
     }
    
-    if (!_.isNull(this.state.osmUsersData)){
+    if (!_.isNull(this.props.osmUsersDataStats)){
 
       if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
         this.d3Update();
@@ -427,6 +410,7 @@ let mapStateToProps = state => {
     return {
       graphMode: state.graphMode,
       choloplethMode: state.choloplethMode,
+      osmUsersDataStats: state.osmUsersDataStats,
       cholopleth: state.cholopleth,
       currentIndividual: state.currentIndividual
     }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MapContainer, TextVisualization, SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
-import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories} from '../actions';
+import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories, changeOsmUsersDataStats } from '../actions';
 import 'intersection-observer';
 import scrollama from 'scrollama';
 import { Intro, SectionFirst, SectionSecond, SectionThird, SectionFourth, SectionFifth, SectionOddPOIs, SectionText } from '../components/sections';
 import _ from 'lodash';
 import interestingPOIs from '../constants/interesting_pois.json';
 import { scaleLinear } from 'd3';
+import axios from 'axios';
 
 const Fragment = React.Fragment;
 
@@ -67,6 +68,16 @@ class Home extends Component {
   }
   componentDidMount(){
     document.body.style.overflowY = "hidden";
+    this.loadData();
+  }
+
+  loadData(){
+    axios.all([axios.get('https://nkosm.wonyoung.so/summaries.json')])
+    .then(axios.spread((response) => {
+      if (response.data.success) {
+        this.props.dispatch(changeOsmUsersDataStats(response.data));
+      }
+    }));
   }
 
   componentDidUpdate(prevProps, prevState){

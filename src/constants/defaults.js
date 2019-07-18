@@ -16,6 +16,7 @@ export const DEFAULT_STATE = {
   choloplethMode: "all", //top20, top5, individual
   currentIndividual: null,
   osmUsers: [],
+  osmUsersDataStats: null,
   responseCategories: [],
   osmUserHistories: null,
   osmUserHistoriesIdx: 0,
