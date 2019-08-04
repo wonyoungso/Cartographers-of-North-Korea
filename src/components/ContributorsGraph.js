@@ -17,6 +17,10 @@ const ContributorsGraphBox = styled.div`
   width: 80%;
   margin: 0 auto;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 20px);
+  }
 `;
 
 const Title = styled.div`
@@ -26,6 +30,10 @@ const Title = styled.div`
   top: 20px;
   color: black;
   font-size: 0.9em;
+
+  @media (max-width: 768px) {
+    width: fit-content;
+  }
 
   div.disclaimer {
     ${mixins.LABEL_ITALIC_TYPE}
@@ -128,7 +136,7 @@ class ContributorsGraph extends Component {
       .force("collide", d3.forceCollide(props.padding))
       .stop();
 
-    for (var i = 0; i < 200; ++i) simulation.tick();
+    for (var i = 0; i < 400; ++i) simulation.tick();
   }
   
   d3Init(){

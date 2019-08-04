@@ -430,6 +430,13 @@ sup {
     font-weight:bold;
     margin-bottom: 5px;
   }
+
+  @media (max-width: 768px) {
+    right: 12px;
+    top: 48px;
+  }
+  
+
 }
 
 

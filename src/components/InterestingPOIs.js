@@ -24,6 +24,11 @@ const POIBox = styled.div`
   display:flex;
   justify-content: space-between;
   width: 400px;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
+
 `;
 
 const TitleArea = styled.div`

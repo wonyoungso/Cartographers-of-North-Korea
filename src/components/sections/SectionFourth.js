@@ -13,12 +13,20 @@ const Gutter = styled.div`
 
 const StickyBottomGraphContainer = styled.div`
   position: sticky;
-  top: calc(100% - ${props => props.height * 0.3 + 20}px);
+  top: ${props => props.graphStickyTop}px;
 `;
 
 
 class SectionFourth extends Component {
   render() {
+    let { windowWidth, windowHeight } = this.props;
+    let minHeight = 350;
+    let graphHeight = windowWidth < 768 ? minHeight : windowHeight * 0.3;
+
+    let graphWidth = windowWidth < 768 ? windowWidth - 20 : windowWidth * 0.8;
+    let radius = windowWidth < 768 ? 1.5 : 2;
+    let graphStickyTop =  windowWidth < 768 ? windowHeight - minHeight - 10 : windowHeight - (windowHeight * 0.3) - 10;
+
     return (
       <SectionFourthContainer style={{ height: this.props.windowHeight * 3.5}}>
         <NonSticky className="trigger" data-action-name="initWorldMap">
@@ -28,12 +36,12 @@ class SectionFourth extends Component {
 
         <Gutter height={150} />
 
-        <StickyBottomGraphContainer height={this.props.windowHeight} style={{ height: this.props.windowHeight * 0.3 }}>
+        <StickyBottomGraphContainer graphStickyTop={graphStickyTop} style={{ height: graphHeight }}>
           <ContributorsGraph 
-            radius={2.5}
-            padding={3.5}
-            width={this.props.windowWidth * 0.8} 
-            height={this.props.windowHeight * 0.3} />
+            radius={radius}
+            padding={radius * 1.5}
+            width={graphWidth} 
+            height={graphHeight} />
         </StickyBottomGraphContainer>
         
         <Gutter height={this.props.windowHeight * 0.5} />

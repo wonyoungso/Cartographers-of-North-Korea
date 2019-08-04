@@ -27,6 +27,18 @@ const RespContainer = styled.div`
   line-height: 1.6;
   word-break: break-word;
 
+
+  @media (max-width: 768px) {
+    top: 50px;
+    left: 13px;
+    z-index: 20;
+    bottom: auto;
+    background-color: white;
+    padding: 10px;
+    min-width: 308px;
+    width: calc(100% - 45px);
+  }
+
   .rela-cont {
     position:relative;
   }

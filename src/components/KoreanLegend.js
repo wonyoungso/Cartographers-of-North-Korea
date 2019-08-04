@@ -12,6 +12,11 @@ const LegendBox = styled.div`
   transition: 0.4s opacity;
   opacity: 0;
   display: flex;
+
+  @media (max-width: 768px) {
+    right: 0;
+    top: -45px;
+  }
 `;
 
 const RedCircle = styled.div`

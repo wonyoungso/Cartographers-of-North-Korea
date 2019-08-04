@@ -22,6 +22,13 @@ const HeaderContainer = styled.div`
     color: black;
     font-size: 0.9em;
   }
+
+  @media (max-width: 768px) {
+    left: 50%;
+    width: calc(100% - 40px);
+    transform: translate(-50%, 0);
+  }
+
 `;
 
 

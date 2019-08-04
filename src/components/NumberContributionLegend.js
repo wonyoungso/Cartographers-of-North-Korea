@@ -13,6 +13,13 @@ const LegendBox = styled.div`
   top: 10px;
   transition: 0.4s opacity;
   opacity: 0;
+  
+
+
+  @media (max-width: 768px) {
+    right: 0;
+    top: -100px;
+  }
 
   h4 {
     ${mixins.LABEL_BOLD_TYPE}

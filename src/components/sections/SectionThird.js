@@ -28,6 +28,9 @@ const NonSticky = styled.div`
   padding: 10px 15px;
   background: #E7F7FB;
   color: black;
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 const StickyGraphArea = styled.div`
@@ -39,11 +42,12 @@ const StickyGraphArea = styled.div`
 
 class SectionThird extends Component {
   render() {
-    let { windowHeight } = this.props;
+    let { windowHeight, windowWidth} = this.props;
 
     let graphHeight = windowHeight * 0.4 < 400 ? 400 : windowHeight * 0.4;
 
-
+    let graphWidth = windowWidth < 768 ? windowWidth - 20 : this.props.windowWidth * 0.8;
+    let radius = windowWidth < 768 ? 2 : 4;
     return (
       <SectionThirdContainer>
         <GradientSticky height={this.props.windowHeight} />
@@ -59,9 +63,9 @@ class SectionThird extends Component {
 
         <StickyGraphArea>
           <ContributorsGraph 
-            radius={4}
-            padding={6}
-            width={this.props.windowWidth * 0.8} 
+            radius={radius}
+            padding={radius * 1.5}
+            width={graphWidth} 
             height={graphHeight} /> 
         </StickyGraphArea>
         
