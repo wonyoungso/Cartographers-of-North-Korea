@@ -161,8 +161,8 @@ class TextVisualization extends Component {
        
 
         <ArrowArea style={{opacity: textVisualization ? 1 : 0}}>
-          <img src={`${process.env.PUBLIC_URL}/assets/more_data_arrow.svg`} />
-          <img src={`${process.env.PUBLIC_URL}/assets/less_data_arrow.svg`} />
+          <img src={`${process.env.PUBLIC_URL}/assets/more_data_arrow.svg`} alt="more data contributed" />
+          <img src={`${process.env.PUBLIC_URL}/assets/less_data_arrow.svg`} alt="less data contributed" />
         </ArrowArea>
 
         {/* <Bar style={{right: 0, opacity: textVisualization ? 1 : 0}}>

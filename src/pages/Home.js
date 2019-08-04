@@ -68,7 +68,6 @@ class Home extends Component {
   }
   componentDidMount(){
     document.body.style.overflowY = "hidden";
-    this.loadData();
   }
 
   loadData(){
@@ -83,21 +82,20 @@ class Home extends Component {
   componentDidUpdate(prevProps, prevState){
     if (prevProps.mapLoaded !== this.props.mapLoaded && this.props.mapLoaded) {
 
+    this.loadData();
 
-        this.scroller = scrollama();
-        this.scroller.setup({
-          step: '.trigger',
-          container: '.scroll-container',
-          offset: 0.8,
-          order: true,
-          progress: true
-        })
-          .onStepEnter(this.handleStepEnter.bind(this))
-          .onStepProgress(_.throttle(this.handleStepProgress.bind(this), 250))
-          .onStepExit(this.handleStepExit.bind(this));
-      _.delay(() => {
-        window.scroll(0, 0);
-      }, 400);
+    this.scroller = scrollama();
+    this.scroller.setup({
+      step: '.trigger',
+      container: '.scroll-container',
+      offset: 0.8,
+      order: true,
+      progress: true
+    })
+      .onStepEnter(this.handleStepEnter.bind(this))
+      .onStepProgress(_.throttle(this.handleStepProgress.bind(this), 250))
+      .onStepExit(this.handleStepExit.bind(this));
+
       
 
       document.body.style.overflowY = "auto";

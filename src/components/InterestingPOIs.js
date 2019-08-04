@@ -7,7 +7,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 const InterestingPOIsContainer = styled(SectionContainer)`
-  margin: 100px 0;
+  margin:0;
 `;
 
 const POIBox = styled.div`

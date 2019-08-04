@@ -19,7 +19,7 @@ class SectionOddPOIs extends Component {
       <SecondContainer>
         <Sticky className="trigger" data-action-name="wrapupChronicleMap">
           <Box>
-            It is particularly interesting to note that there are a number of street-level points of interest.
+            It is particularly interesting to note that there are a number of street-level points of interests (POIs).
           </Box>
         </Sticky>
         

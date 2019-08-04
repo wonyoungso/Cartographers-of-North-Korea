@@ -17,7 +17,7 @@ class SectionSecond extends Component {
       <SecondContainer className="trigger" data-action-name="changeChronicleMap">
         <Sticky>
           <Box>
-            For a country that is closed to the internet, the quality of OSM data in North Korea is extraordinary: 324,415 data points drawn by 889 contributors since 2007.
+            For a country that is closed to the internet, however, the quality of OSM data in North Korea is extraordinary: 324,415 data points drawn by 889 contributors since 2007.
           </Box>
         </Sticky>
 

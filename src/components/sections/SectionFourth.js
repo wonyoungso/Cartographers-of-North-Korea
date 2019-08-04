@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ContributorsGraph } from '../';
-import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky, NonSticky} from '../../stylesheets/components';
+import {SectionContainer,  NonSticky} from '../../stylesheets/components';
 
 const SectionFourthContainer = styled(SectionContainer)`
 `;

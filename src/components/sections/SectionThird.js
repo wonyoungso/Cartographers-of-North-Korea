@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ContributorsGraph } from '../';
 import styled from 'styled-components';
 import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky} from '../../stylesheets/components';
+import {SectionContainer,} from '../../stylesheets/components';
 
 const SectionThirdContainer = styled(SectionContainer)`
 `;
