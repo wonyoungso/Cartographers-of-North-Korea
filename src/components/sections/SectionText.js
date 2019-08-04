@@ -27,13 +27,13 @@ class SectionText extends Component {
     
 
         <NonSticky className="trigger" data-action-name="initTextVisualization" style={{ zIndex: 11 }}>
-          Thus, I asked all of the contributors to know more about the motivations and strategies. Here are the responses from 211 contributors.
+          To know more about their motivations and mapping strategies, we sent a letter to all of the contributors; here are the responses from 211 contributors.
         </NonSticky>
         <Gutter h={200} />
         <TextVisualizationResponses />
         <Gutter h={500} />
         <NonSticky className="trigger" data-action-name="changeTextVisualizationWhy" style={{ zIndex: 11 }}>
-          Although the contributors' motivation is mostly for fun and pure curiosity—such as searching for empty space in OSM—, they were motivated by diverse reasons; in particular, with the respect of advocating open mapping, they wanted North Koreans to use the map in the near future, such as for escaping their territory. 
+          First, although the contributors' motivation is mostly for fun and pure curiosity—such as searching for empty space in OSM—, they were motivated by diverse reasons; in particular, with the respect of advocating open mapping, they wanted North Koreans to use the map in the near future, such as for escaping their territory. 
         </NonSticky>
         <Gutter h={1500} />
         <NonSticky className="trigger" data-action-name="changeTextVisualizationHow" style={{ zIndex: 11 }}>
