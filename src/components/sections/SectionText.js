@@ -41,7 +41,7 @@ class SectionText extends Component {
         </NonSticky>
          <Gutter h={1500} />
         <NonSticky className="trigger" data-action-name="changeTextVisualizationStory" style={{ zIndex: 11 }}>
-          Some contributors have been interested in North Korea because of similar national history (German citizens) or personal history, and they have followed media outlets. They have thought about the reunification of the Korean peninsula. You can toggle and click to see individual responses.
+          Some contributors have been interested in North Korea because of similar national history (e.g., German citizens) or they have personal history (e.g., their father was deployed to the Korean War), thus they have followed the news about North Korea. They have some thought about the reunification of the Korean peninsula. To explore more, please toggle and click to see individual responses.
         </NonSticky>
 
       </SectionTextContainer>

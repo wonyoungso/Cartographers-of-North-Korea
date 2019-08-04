@@ -21,7 +21,8 @@ const RespContainer = styled.div`
   z-index:20;
   background-color: white;
   padding: 10px;
-  width: 50%;
+  min-width: 308px;
+  width: 25%;
   border: 1px solid #ccc;
   line-height: 1.6;
   word-break: break-word;
@@ -34,12 +35,13 @@ const RespContainer = styled.div`
     
     max-height: 300px;
     overflow-y: scroll;
-    line-height: 1.8;
-    padding-bottom: 50px;
+    line-height: 1.5;
+    padding-bottom: 10px;
+    font-size:0.9em;
 
   }
   span {
-    padding: 3px 5px;
+    padding: 2px 4px;
   }
 
   .close-btn {
@@ -91,49 +93,45 @@ const Date = styled.div`
   color: #AAA;
 `;
 
-const CategorySpan = styled.span`
-  font-size: 0.8em;
+const CategorySpan = styled.div`
+  font-size: 0.7em;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   padding: 2px 5px;
-  line-height: 1.7;
-  margin-right: 5px;
-  hyphens: auto;
-  word-break: break-all;
+  line-height: 1.6;
+  margin-bottom: 3px;
 `
 
 const RespInfoArea = styled.div`
   display: flex;
-  justify-content: space-between;
-  position: absolute;
-  padding-top: 10px;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  padding: 10px 0;
   border-top: 1px solid #ccc;
-  bottom: 0px;
   background: white;
   width: 100%;
 
 
-  div.left-inner {
-    width: calc(100% - 150px);
+  div.inner {
+    width: calc(50% - 10px);
   }
 
-   div.right-inner {
-     width: 120px;
-   }
 
-  div.left-inner {
+  div.inner {
     line-height: 1.6;
-  }
-
-  div.right-inner {
-    text-align:right;
-    font-size:0.9em;
-    color:#777;
   }
 
   i {
     font-style: italic;
   }
+`;
+
+const ContributorInfoArea = styled.div`
+  text-align:right;
+  font-size:0.8em;
+  font-family: "Roboto", sans-serif;
+  color:#777;
+
 `;
 
 class SelectedResponseViewer extends Component {
@@ -217,9 +215,7 @@ class SelectedResponseViewer extends Component {
 
             <div className="resp-content">
               
-              <div>
-                -
-              </div>
+              <Gutter h={25}/>
 
               {
                 _.map(selectedOsmUserResponse.responses, (r, i) => {
@@ -233,30 +229,26 @@ class SelectedResponseViewer extends Component {
                   )
                 })
               }
-
-              <Gutter h={70}></Gutter>
             
 
             </div>
 
             <RespInfoArea>
 
-              <div className="left-inner">
-                {
-                  _.map(selectedColorCategories, scc => {
-                    return (
-                      <CategorySpan key={scc.id} style={{ backgroundColor: scc.color, color: "white" }}>
-                        {scc.category_name}
-                      </CategorySpan>
-                    )
-                  })
-                }
-              </div>
-              <div className="right-inner">
+              {
+                _.map(selectedColorCategories, scc => {
+                  return (
+                    <CategorySpan key={scc.id} style={{ backgroundColor: scc.color, color: "white" }}>
+                      {scc.category_name}
+                    </CategorySpan>
+                  )
+                })
+              }
+            </RespInfoArea>
+            <ContributorInfoArea>
                 P{ selectedOsmUserResponse.id }<br/>
                 <i>{ numberWithDelimiter(selectedOsmUserResponse.all_count) } Contribution</i>
-              </div>
-            </RespInfoArea>
+            </ContributorInfoArea>
           </div>
           
           
