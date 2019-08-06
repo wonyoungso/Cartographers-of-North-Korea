@@ -71,7 +71,7 @@ class Home extends Component {
   }
 
   loadData(){
-    axios.all([axios.get('https://nkosm.wonyoung.so/summaries.json')])
+    axios.all([axios.get('https://nkosm.s3.amazonaws.com/summaries.json')])
     .then(axios.spread((response) => {
       if (response.data.success) {
         this.props.dispatch(changeOsmUsersDataStats(response.data));
