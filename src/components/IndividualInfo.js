@@ -53,7 +53,6 @@ const CloseButton = styled.a`
 
 `;
 
-const Fragment = React.Fragment;
 
 class IndividualInfo extends Component {
   componentDidMount(){
@@ -92,6 +91,7 @@ class IndividualInfo extends Component {
 
     return (
       <Box>
+        
         <CloseButton onClick={this.handleClick.bind(this)} href="javascript:void(0);">
           ⨯
         </CloseButton>

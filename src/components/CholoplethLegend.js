@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMapLoaded, changeCurrentSeq } from '../actions';
-import { LayerGenerator } from './';
-import { dispatchToGlobal, numberWithDelimiter, randomBetween } from '../utils';
+import {  numberWithDelimiter } from '../utils';
 import * as d3 from 'd3';
 import country_analysis_all from '../constants/country_analysis_all.json';
 import country_analysis_top_20 from '../constants/country_analysis_top_20.json';
 import country_analysis_top_5 from '../constants/country_analysis_top_5.json';
 import _ from 'lodash';
 
-const Fragment = React.Fragment;
 class CholoplethLegend extends Component {
   constructor(props) {
     super(props);
@@ -37,13 +34,13 @@ class CholoplethLegend extends Component {
 
       currentCountryJSON = currentIndividual;
 
-    } else if (choloplethMode == "all") {
+    } else if (choloplethMode === "all") {
 
       currentCountryJSON = {
         country_counts: country_analysis_all
       };
 
-    } else if (choloplethMode == "top20") {
+    } else if (choloplethMode === "top20") {
 
       currentCountryJSON = {
         country_counts: country_analysis_top_20
@@ -58,11 +55,10 @@ class CholoplethLegend extends Component {
     }
 
     if (!_.isNull(currentCountryJSON) && cholopleth) {
-      let width = 300;
 
-      var extent = d3.extent(currentCountryJSON.country_counts, cc => {
+      var extent = [0, d3.max(currentCountryJSON.country_counts, cc => {
         return cc.count;
-      })
+      })]
 
       var finalDomain = [extent[0],
       extent[0] + (extent[1] - extent[0]) / 9 * 1,
@@ -99,7 +95,7 @@ class CholoplethLegend extends Component {
           # of Contribution
         </div>
         {
-          result.opacity == 1 ? 
+          result.opacity === 1 ? 
           _.map(result.finalDomain, (val, i) => {
             if (_.isUndefined(val)) {
               return null;

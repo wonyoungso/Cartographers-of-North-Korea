@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { windowResize, changeDataLoaded, changeTrips, changeCurrentTime } from './actions';
+import { windowResize } from './actions';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
 // import SummaryPage from './pages/SummaryPage';
-import {  } from "module";
 
 const Fragment = React.Fragment;
 

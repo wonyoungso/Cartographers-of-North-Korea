@@ -16,6 +16,12 @@ const Container = styled.div`
   z-index:4;
   opacity: ${props => props.show ? 1 : 0};
   transition: 0.4s opacity;
+
+
+  @media (max-width: 768px) {
+    top:50px;
+    right: 11px;
+  }
 `;
 
 const RightStat = styled.div`

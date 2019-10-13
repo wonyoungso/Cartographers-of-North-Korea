@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMapLoaded, changeCurrentSeq, changeOsmUserHistoriesIdx } from '../actions';
-import { LayerGenerator } from './';
+import { changeMapLoaded, changeOsmUserHistoriesIdx } from '../actions';
 import { toWgs84 }  from 'reproject';
 import proj4 from 'proj4';
 import turf from 'turf';
@@ -40,9 +39,6 @@ class MapContainer extends Component {
   }
   
   handleStyleLoad(e) {
-    console.log("load");
-    let { currentFeature, currentTimeStamp } = this.props;
-    this.props.dispatch(changeMapLoaded(true));
   
     this.map.addSource('nk-line', {
       type: 'vector',
@@ -148,6 +144,8 @@ class MapContainer extends Component {
 
     this.addWorldMap();
     this.map.resize();
+
+    this.props.dispatch(changeMapLoaded(true));
   }
 
   addWorldMap(){
@@ -189,19 +187,18 @@ class MapContainer extends Component {
 
 
   componentDidUpdate(prevProps){
-    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode, selectedOsmUserResponse, osmUserHistories, osmUserHistoriesIdx } = this.props;
+    let { nkTile, cholopleth, currentFeature, zoom, center, currentTimeStamp, currentIndividual, choloplethMode, osmUserHistories, osmUserHistoriesIdx, mapLoaded } = this.props;
 
 
     let nkTileVisibility = nkTile ? 'visible' : 'none';
 
-    if (window.map.isStyleLoaded()){
+    if (mapLoaded){
       this.map.resize();
   
       this.map.setLayoutProperty('nk-line-layer', 'visibility', nkTileVisibility);
       this.map.setLayoutProperty('nk-polygon-layer', 'visibility', nkTileVisibility);
       this.map.setLayoutProperty('nk-point-layer', 'visibility', nkTileVisibility);
   
-      // console.log("currentFeature", currentFeature);
       if (_.isNull(currentFeature)) {
         this.map.stop();
         this.map.flyTo({ center: center, zoom: zoom });
@@ -234,23 +231,24 @@ class MapContainer extends Component {
         this.map.flyTo({ center: center, zoom: zoom });
       }
 
+
+      if (!_.isNull(osmUserHistories)) {
+        if (!_.isUndefined(osmUserHistories[osmUserHistoriesIdx])){
+          this.updateOsmUserHistory(osmUserHistories[osmUserHistoriesIdx]);
+        }
+      } else {
+        if (!_.isUndefined(this.map.getLayer('osm-user-history'))){
+          this.map.removeLayer('osm-user-history');
+          this.map.removeLayer('osm-user-history-circle');
+          this.map.removeSource('osm-user-history-source');
+
+          this.map.removeLayer('osm-user-history-bbox');
+          this.map.removeSource('osm-user-history-bbox-source');
+        }
+      }
     }
 
 
-    if (!_.isNull(osmUserHistories)) {
-      if (!_.isUndefined(osmUserHistories[osmUserHistoriesIdx])){
-        this.updateOsmUserHistory(osmUserHistories[osmUserHistoriesIdx]);
-      }
-    } else {
-      if (!_.isUndefined(this.map.getLayer('osm-user-history'))){
-        this.map.removeLayer('osm-user-history');
-        this.map.removeLayer('osm-user-history-circle');
-        this.map.removeSource('osm-user-history-source');
-
-        this.map.removeLayer('osm-user-history-bbox');
-        this.map.removeSource('osm-user-history-bbox-source');
-      }
-    }
 
     
   }
@@ -329,6 +327,7 @@ class MapContainer extends Component {
 
     try {
 
+      this.map.stop();
       this.map.fitBounds([[finalBbox[0], finalBbox[1]],
       [finalBbox[2], finalBbox[3]]], {
           padding: { top: 100, bottom: 100, left: 100, right: 100 }
@@ -403,9 +402,9 @@ class MapContainer extends Component {
         "#2855a4",
         "#253494"])
 
-    var extent = d3.extent(currentCountryJSON.country_counts, cc => {
+    var extent = [0, d3.max(currentCountryJSON.country_counts, cc => {
       return cc.count;
-    })
+    })];
 
 
     var finalDomain = [extent[0],
@@ -428,13 +427,13 @@ class MapContainer extends Component {
     });
 
 
-    expression.push("rgba(0,0,0,0)");
+    expression.push("#ffffcc");
 
     this.map.setPaintProperty("world-map-layer", "fill-color", expression);
   }
 
   updateCurrentFeature(currentFeature) {
-
+      console.log("======updateCurrentFeature======", currentFeature);
       let feature4326 = toWgs84(currentFeature.feature, proj4('EPSG:3857'));
 
 
@@ -474,6 +473,7 @@ class MapContainer extends Component {
       
 
       if (feature4326.features[0].geometry.type === "Point") {
+        this.map.stop();
         this.map.flyTo({
           center: feature4326.features[0].geometry.coordinates,
           zoom: randomBetween(12, 14)
@@ -487,6 +487,7 @@ class MapContainer extends Component {
 
         try {
 
+          this.map.stop();
           this.map.fitBounds([[finalBbox[0], finalBbox[1]],
           [finalBbox[2], finalBbox[3]]], {
               padding: { top: 100, bottom: 100, left: 100, right: 100 }
@@ -534,6 +535,7 @@ let mapStateToProps = state => {
     nkTile: state.nkTile,
     cholopleth: state.cholopleth,
     zoom: state.zoom,
+    mapLoaded: state.mapLoaded,
     center: state.center,
     currentSeq: state.currentSeq,
     currentFeature: state.currentFeature,

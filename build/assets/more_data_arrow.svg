@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="133px" height="30px" viewBox="0 0 133 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+<svg width="134px" height="31px" viewBox="0 0 134 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
     <title>more_data_arrow</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Scene-1-Copy-11" transform="translate(-181.000000, -831.000000)">
+        <g id="Scene-1-Copy-11" transform="translate(-180.000000, -831.000000)">
             <g id="more_data_arrow" transform="translate(182.000000, 828.676075)">
-                <path id="Path-5" d="M8.5,27 L131.460938,27 L131.460938,28 L8.5,28 L8.5,32 L-0.5,27.5 L8.5,23 L8.5,27 Z" fill="#535353" fill-rule="nonzero"></path>
+                <path id="Path-5" d="M1.40875332,28 L7.74513062,31.5642122 L7.25486938,32.4357878 L-1.51986443,27.5 L7.25486938,22.5642122 L7.74513062,23.4357878 L1.40875332,27 L131.460938,27 L131.460938,28 L1.40875332,28 Z" fill="#535353" fill-rule="nonzero"></path>
                 <text id="More-data-contribute" font-family="Roboto-Italic, Roboto" font-size="12" font-style="italic" font-weight="normal" fill="#5D5D5D">
                     <tspan x="0" y="11.3239247">More data contributed</tspan>
                 </text>

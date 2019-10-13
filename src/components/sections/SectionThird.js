@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ContributorsGraph } from '../';
 import styled from 'styled-components';
 import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky} from '../../stylesheets/components';
+import {SectionContainer,} from '../../stylesheets/components';
 
 const SectionThirdContainer = styled(SectionContainer)`
 `;
@@ -28,6 +28,9 @@ const NonSticky = styled.div`
   padding: 10px 15px;
   background: #E7F7FB;
   color: black;
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 const StickyGraphArea = styled.div`
@@ -39,16 +42,17 @@ const StickyGraphArea = styled.div`
 
 class SectionThird extends Component {
   render() {
-    let { windowHeight } = this.props;
+    let { windowHeight, windowWidth} = this.props;
 
     let graphHeight = windowHeight * 0.4 < 400 ? 400 : windowHeight * 0.4;
 
-
+    let graphWidth = windowWidth < 768 ? windowWidth - 20 : this.props.windowWidth * 0.8;
+    let radius = windowWidth < 768 ? 2 : 4;
     return (
       <SectionThirdContainer>
         <GradientSticky height={this.props.windowHeight} />
         <NonSticky className="trigger" data-action-name="initGraphScene">
-          It is true that it is hard to know the contributors only studying the OSM data, but the data shows some characteristics about them. First, the plot shows that the contributors are formed a power-law distribution, and the top 10 contributors drew 61 percent of the map.
+          Although it is hard to know about the contributors only by the OSM data, but the data shows some characteristics about them. First, the plot shows that the top 10 contributors drew 61 percent of the map, thus forming a power-law graph.
         </NonSticky>
 
         <div style={{
@@ -59,9 +63,9 @@ class SectionThird extends Component {
 
         <StickyGraphArea>
           <ContributorsGraph 
-            radius={4}
-            padding={6}
-            width={this.props.windowWidth * 0.8} 
+            radius={radius}
+            padding={radius * 1.5}
+            width={graphWidth} 
             height={graphHeight} /> 
         </StickyGraphArea>
         
@@ -71,7 +75,7 @@ class SectionThird extends Component {
         </div>
         
         <NonSticky className="trigger" data-action-name="changeGraphKorean">
-          Second, In the contributors who labeled a name to the map objects, 62% of the contributors labeled them in Korean. 
+          Second, 62% of the contributors labeled map objects in Korean, including the top five contributors.
         </NonSticky>
         
 

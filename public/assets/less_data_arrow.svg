@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="132px" height="30px" viewBox="0 0 132 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+<svg width="133px" height="31px" viewBox="0 0 133 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
     <title>less_data_arrow</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Scene-1-Copy-11" transform="translate(-1100.000000, -831.000000)">
             <g id="less_data_arrow" transform="translate(1100.000000, 828.676075)">
-                <path id="Path-5" d="M122.960938,28 L0,28 L0,27 L122.960938,27 L122.960938,23 L131.960938,27.5 L122.960938,32 L122.960938,28 Z" fill="#535353" fill-rule="nonzero"></path>
+                <path id="Path-5" d="M130.052184,27 L123.715807,23.4357878 L124.206068,22.5642122 L132.980802,27.5 L124.206068,32.4357878 L123.715807,31.5642122 L130.052184,28 L0,28 L0,27 L130.052184,27 Z" fill="#535353" fill-rule="nonzero"></path>
                 <text id="Less-data-contribute" font-family="Roboto-Italic, Roboto" font-size="12" font-style="italic" font-weight="normal" fill="#5D5D5D">
                     <tspan x="12" y="11.3239247">Less data contributed</tspan>
                 </text>

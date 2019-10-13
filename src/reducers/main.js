@@ -9,6 +9,12 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+
+    case 'CHANGE_OSM_USERS_DATA_STATS':
+      return {
+        ...state,
+        osmUsersDataStats: action.payload.osmUsersDataStats
+      }
     case 'CHANGE_OSM_USER_HISTORIES_IDX':
       return {
         ...state,

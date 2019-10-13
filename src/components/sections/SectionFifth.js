@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { ContributorsGraph } from '../';
-import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky, NonSticky} from '../../stylesheets/components';
+import {SectionContainer, NonSticky} from '../../stylesheets/components';
 
 
 const SectionFifthContainer = styled(SectionContainer)`
@@ -37,14 +35,14 @@ class SectionFifth extends Component {
       <SectionFifthContainer style={{height: this.props.windowHeight}}>
         <Gutter height={100}></Gutter>
         <NonStickyFinal className="trigger" data-action-name="final">
-          Regarding the complicated situation where there are fundamental differences between the beneficiaries (like, the random people on the internet from the first world) and the actual residents who live in the territory, asking the questions and imagining the reason why the 889 people have contributed data to North Korea appears to touch several things from the ideals that the internet and the open source culture have given to us, to North Korea’s surveillance- and defense-optimized, and state-controlled intranet that is founded on the open source culture. Particularly, with the respect to many POIs which are labeled in a conformist way, this “open source map” is truly oddly situated in the open source culture.
+          Although most cartographers of North Korea do not live in the country, they are motivated by issues there. Like data analysts and investigative journalists, they combine information obtained from different sources by a variety of methods to produce place-level knowledge remotely. However, because of the inherent limitations of remotely contributed data, it is questionable whether these strategies can be applied to other crowdsourced projects. We should also consider who ultimately benefits from the OSM process. As mapping is a combination of technical, political, and social capabilities and intentions and open data can be accessed not only by citizens but also by institutions, unexpected outcomes are frequently observed.
           
           <Gutter height={50}></Gutter>
           <MethodologyTitle>
             * Methodology
           </MethodologyTitle>
           <MethodologyPG>
-            OpenStreetMap data is used for the research. and this data is under the Open Database License (ODbL) version 1.0 share-alike license for data. for aggregating the changeset data, I used the center point of each changeset boundary. All contributors' screen name is anonymized for protecting the individual privacy.
+            OpenStreetMap data is used for the research. The OSM data is under the Open Database License (ODbL) version 1.0 share-alike license. For aggregating the changeset data, I used the centroid point of each changeset boundary. All contributors' screen name is anonymized for protecting the individual privacy.
           </MethodologyPG>
         </NonStickyFinal>
       </SectionFifthContainer>

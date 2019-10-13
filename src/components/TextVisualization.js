@@ -89,6 +89,15 @@ const ArrowArea = styled.div`
   bottom: 20px;
   display: flex;
   justify-content: space-between;
+
+
+  @media (max-width: 768px) {
+    left: 10px;
+    height: 32px;
+    width: calc(100% - 20px);
+    bottom: 10px;
+  }
+  
   
   hr {
     border:none;
@@ -103,7 +112,7 @@ const ArrowArea = styled.div`
 class TextVisualization extends Component {
   
   componentDidMount(){
-    axios.all([axios.get('https://nkosm.wonyoung.so/api/osm_users.json')])
+    axios.all([axios.get('https://nkosm.s3.amazonaws.com/osm_users.json')])
     .then(axios.spread((response) => {
       if (response.data.success) {
         this.props.dispatch(changeOsmUserReponseData(response.data.osm_users, response.data.response_categories));
@@ -126,43 +135,47 @@ class TextVisualization extends Component {
   }
 
   render() {
-    let { textVisualization, selectedTextCategory, responseCategories } = this.props;
+    let { windowWidth, textVisualization, selectedTextCategory, responseCategories } = this.props;
     let subCategories = _.groupBy(responseCategories, c => { return c.subcategory_id; });
     let colorScale = d3.scaleOrdinal().domain(_.map(responseCategories, rc => { return rc.id})).range(CATEGORIES_COLORS);
     
     return (
       <Fragment>
-        <Bar style={{left: 0, opacity: textVisualization ? 1 : 0}}>
-          {
-            _.map(subCategories, (categories, key) => {
-              return (
-                <section key={key}>
-                  <h3>
-                    { SUBCATEGORY_SELECT[Number(key)][0] }
-                  </h3>
-                  {
-                    _.map(categories, c => {
-                
-                      let selected = _.isUndefined(selectedTextCategory[c.id]);
-                      return selected ? 
-                        <CategoryLink onClick={this.handleAddTextCategory.bind(this, c)} key={c.id}>{c.category_name}</CategoryLink> : 
-                        <UnCategoryLink style={{backgroundColor: colorScale(c.id)}} onClick={this.handleAddTextCategory.bind(this, c)} key={c.id}>
-                          {c.category_name} <span className="close-btn">⨯</span>
-                        </UnCategoryLink>;
-                    })
-                  }
-                </section>
-                
-              );
-            })
-          }
-        </Bar>
+        {
+          windowWidth > 768 ? 
+          <Bar style={{left: 0, opacity: textVisualization ? 1 : 0}}>
+            {
+              _.map(subCategories, (categories, key) => {
+                return (
+                  <section key={key}>
+                    <h3>
+                      { SUBCATEGORY_SELECT[Number(key)][0] }
+                    </h3>
+                    {
+                      _.map(categories, c => {
+                  
+                        let selected = _.isUndefined(selectedTextCategory[c.id]);
+                        return selected ? 
+                          <CategoryLink onClick={this.handleAddTextCategory.bind(this, c)} key={c.id}>{c.category_name}</CategoryLink> : 
+                          <UnCategoryLink style={{backgroundColor: colorScale(c.id)}} onClick={this.handleAddTextCategory.bind(this, c)} key={c.id}>
+                            {c.category_name} <span className="close-btn">⨯</span>
+                          </UnCategoryLink>;
+                      })
+                    }
+                  </section>
+                  
+                );
+              })
+            }
+          </Bar> : null
+        }
+        
         
        
 
         <ArrowArea style={{opacity: textVisualization ? 1 : 0}}>
-          <img src={`${process.env.PUBLIC_URL}/assets/more_data_arrow.svg`} />
-          <img src={`${process.env.PUBLIC_URL}/assets/less_data_arrow.svg`} />
+          <img src={`${process.env.PUBLIC_URL}/assets/more_data_arrow.svg`} alt="more data contributed" />
+          <img src={`${process.env.PUBLIC_URL}/assets/less_data_arrow.svg`} alt="less data contributed" />
         </ArrowArea>
 
         {/* <Bar style={{right: 0, opacity: textVisualization ? 1 : 0}}>
@@ -184,6 +197,7 @@ class TextVisualization extends Component {
 
 let mapStateToProps = state => {
   return {
+    windowWidth: state.windowWidth,
     textVisualization: state.textVisualization,
     selectedTextCategory: state.selectedTextCategory,
     responseCategories: state.responseCategories

@@ -28,6 +28,12 @@ const NonSticky = styled.div`
   padding: 10px 15px;
   background: #E7F7FB;
   color: black;
+
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
+
 `;
 
 
@@ -46,6 +52,11 @@ const Box = styled.div`
   padding: 10px 15px;
   background: #E7F7FB;
   color: black;
+
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 export {

@@ -22,23 +22,15 @@ const HeaderContainer = styled.div`
     color: black;
     font-size: 0.9em;
   }
+
+  @media (max-width: 768px) {
+    left: 50%;
+    width: calc(100% - 40px);
+    transform: translate(-50%, 0);
+  }
+
 `;
 
-const DateArea = styled.div`
-  position:absolute;
-
-  border: 1px solid #CCCCCC;
-  padding: 4px 5px;
-  background-color: white;
-  
-  ${mixins.LABEL_REGULAR_TYPE}
-  right: 0;
-  top: 2px;
-  transform: translate(87%, 0);
-  width: auto;
-  font-size:0.9em;
-  color: #888;
-`;
 
 class TitleHeader extends Component {
   render() {

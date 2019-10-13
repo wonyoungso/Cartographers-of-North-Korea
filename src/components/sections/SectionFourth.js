@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ContributorsGraph } from '../';
-import mixins from '../../stylesheets/mixins';
-import {SectionContainer, Box, Sticky, NonSticky} from '../../stylesheets/components';
+import {SectionContainer,  NonSticky} from '../../stylesheets/components';
 
 const SectionFourthContainer = styled(SectionContainer)`
 `;
@@ -14,33 +13,41 @@ const Gutter = styled.div`
 
 const StickyBottomGraphContainer = styled.div`
   position: sticky;
-  top: calc(100% - ${props => props.height * 0.3 + 20}px);
+  top: ${props => props.graphStickyTop}px;
 `;
 
 
 class SectionFourth extends Component {
   render() {
+    let { windowWidth, windowHeight } = this.props;
+    let minHeight = 350;
+    let graphHeight = windowWidth < 768 ? minHeight : windowHeight * 0.3;
+
+    let graphWidth = windowWidth < 768 ? windowWidth - 20 : windowWidth * 0.8;
+    let radius = windowWidth < 768 ? 1.5 : 2;
+    let graphStickyTop =  windowWidth < 768 ? windowHeight - minHeight - 10 : windowHeight - (windowHeight * 0.3) - 10;
+
     return (
       <SectionFourthContainer style={{ height: this.props.windowHeight * 3.5}}>
         <NonSticky className="trigger" data-action-name="initWorldMap">
-          Third, OpenStreetMap has changesets, which is history of past contributions of each user. Using this datasets, it can be seen which regions, other than North Korea, have been the contributors’ interests. When summing up every changesets of 887 contributors, it does not give much insights, although there are some countries that has been in good relationship with North Korea such as Germany, China, and Russia.
+          Contributors' activity can also be estimated by means of OSM changesets, which are a history of each user’s past contributions. Using these changesets, one can see which regions other than North Korea contributors have also worked on. 
         </NonSticky>
         
 
         <Gutter height={150} />
 
-        <StickyBottomGraphContainer height={this.props.windowHeight} style={{ height: this.props.windowHeight * 0.3 }}>
+        <StickyBottomGraphContainer graphStickyTop={graphStickyTop} style={{ height: graphHeight }}>
           <ContributorsGraph 
-            radius={2.5}
-            padding={3.5}
-            width={this.props.windowWidth * 0.8} 
-            height={this.props.windowHeight * 0.3} />
+            radius={radius}
+            padding={radius * 1.5}
+            width={graphWidth} 
+            height={graphHeight} />
         </StickyBottomGraphContainer>
         
         <Gutter height={this.props.windowHeight * 0.5} />
 
         <NonSticky className="trigger" data-action-name="changeWorldMapHeavyContributor">
-          However, there are some countries coming up with heavy contributors. For instance, the top 20 contributors who use Korean also contributed to the countries as follows: China, Germany, India, United States, and South Korea.
+          For instance, the top 20 contributors who used Korean to label map objects also contributed to the OSM dataset for China, Germany, India, the United States, and South Korea.
         </NonSticky>  
         
 
@@ -48,7 +55,7 @@ class SectionFourth extends Component {
 
 
         <NonSticky className="trigger" data-action-name="changeWorldMapHeaviestContributor">
-          If the number of contributor is reduced to 5, the list of countries changed as follows: India, Germany, Ukraine, Russia, and Japan. It is also interesting to see the individual user’s spatial distribution of contributions.
+          For the top five contributors, this list changes slightly: India, Germany, Ukraine, Russia, and Japan.
         </NonSticky>
       </SectionFourthContainer>
     );
