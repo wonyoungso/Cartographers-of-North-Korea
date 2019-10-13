@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 // import SummaryPage from './pages/SummaryPage';
-import LandingPage from './pages/LandingPage';
+import {  } from "module";
 
 const Fragment = React.Fragment;
 
