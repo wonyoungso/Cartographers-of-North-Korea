@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { windowResize, changeDataLoaded, changeTrips, changeCurrentTime } from './actions';
+import { windowResize } from './actions';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-// import SummaryPage from './pages/SummaryPage';
-import LandingPage from './pages/LandingPage';
+
+import MapProgress from './pages/MapProgress';
+import Pois from './pages/Pois';
+import Interviews from './pages/Interviews';
 
 const Fragment = React.Fragment;
 
@@ -37,7 +38,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Fragment>
-          <Route path={process.env.PUBLIC_URL + '/'} component={Home} />
+          <Route exact path={process.env.PUBLIC_URL + '/'} component={Home} />
+          <Route exact path={process.env.PUBLIC_URL + '/map-progress'} component={MapProgress} />
+          <Route exact path={process.env.PUBLIC_URL + '/pois'} component={Pois} />
+          <Route exact path={process.env.PUBLIC_URL + '/interviews'} component={Interviews} />
         </Fragment>
       </BrowserRouter>
     );
