@@ -23,6 +23,7 @@ import NumberContributionLegend from './NumberContributionLegend';
 import ProgressMapContainer from './ProgressMapContainer';
 import PoiMapContainer from './PoiMapContainer';
 import POIFixed from './POIFixed';
+import SelectedSentences from './SelectedSentences';
 
 export {
   ChoroplethMap,
@@ -49,5 +50,6 @@ export {
   NumberContributionLegend,
   ProgressMapContainer,
   PoiMapContainer,
-  POIFixed
+  POIFixed,
+  SelectedSentences
 };

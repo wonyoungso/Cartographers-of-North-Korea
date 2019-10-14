@@ -10,11 +10,9 @@ class Interviews extends Component {
   }
 
   render() {
-    let { selectedOsmUserResponse } = this.props;
     return (
       <Fragment>
         <SelectedSentences />
-
       </Fragment>
     )
   }
@@ -22,7 +20,6 @@ class Interviews extends Component {
 
 let mapStateToProps = state => {
   return {
-    selectedOsmUserResponse: state.selectedOsmUserResponse
   };
 }
 
