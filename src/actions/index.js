@@ -84,6 +84,15 @@ export const changeTextVisualization = (textVisualization) => {
 }
 
 
+export const changeTimelineUI = (timelineUI) => {
+  return {
+    type: 'CHANGE_TIMELINE_UI',
+    payload: {
+      timelineUI: timelineUI
+    }
+  }
+}
+
 export const changeIntro = (params) => {
   return {
     type: 'CHANGE_INTRO',

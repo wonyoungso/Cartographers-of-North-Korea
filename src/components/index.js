@@ -20,6 +20,9 @@ import TextVisualizationResponses from './TextVisualizationResponses';
 import UserResponse from './UserResponse';
 import SelectedResponseViewer from './SelectedResponseViewer';
 import NumberContributionLegend from './NumberContributionLegend';
+import ProgressMapContainer from './ProgressMapContainer';
+import PoiMapContainer from './PoiMapContainer';
+import POIFixed from './POIFixed';
 
 export {
   ChoroplethMap,
@@ -43,5 +46,8 @@ export {
   UserResponse,
   TextVisualizationResponses,
   SelectedResponseViewer,
-  NumberContributionLegend
+  NumberContributionLegend,
+  ProgressMapContainer,
+  PoiMapContainer,
+  POIFixed
 };
