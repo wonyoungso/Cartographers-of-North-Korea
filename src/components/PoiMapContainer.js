@@ -8,8 +8,9 @@ import { randomBetween } from '../utils';
 import * as d3 from 'd3';
 import _ from 'lodash';
 import { POIFixed } from './';
-import interestingPOIs from '../constants/interesting_pois.json';
+import interestingPOIsNotSuffled from '../constants/interesting_pois_full.json';
 
+const interestingPOIs = _.shuffle(interestingPOIsNotSuffled);
 const Fragment = React.Fragment;
 class PoiMapContainer extends Component {
   constructor(props){
@@ -470,7 +471,7 @@ class PoiMapContainer extends Component {
 
         }
 
-      }, 4000);
+      }, 5000);
 
     }
 
@@ -483,9 +484,10 @@ class PoiMapContainer extends Component {
         _.delay(() => {
           this.setState({
             idx: (this.state.idx + 1) % interestingPOIs.length
-          })
-          this.sendDispatch((this.state.idx + 1) % interestingPOIs.length);
-        }, 4000);
+          }, () => {
+            this.sendDispatch(this.state.idx);
+          });
+        }, 5000);
 
       }
     

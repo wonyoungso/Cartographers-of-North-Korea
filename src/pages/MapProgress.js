@@ -48,7 +48,7 @@ class MapProgress extends Component {
 
       this.props.dispatch(changeCurrentTimeStamp(this.timeScale(this.idx)));
       this.idx = (this.idx + 1) % 1000;
-    }, 210);
+    }, 150);
 
 
   }
