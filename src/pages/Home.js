@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MapContainer, TextVisualization, ContributorInfo, CenterMarker, 
-        SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
-import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories} from '../actions';
-import axios from 'axios';
+import { MapContainer, TextVisualization, SelectedResponseViewer, TitleHeader, TimelineScroller, CholoplethLegend } from '../components';
+import { changeGraphKorean, changeIntro,  wrapupChronicleMap, changeEmptyMap, changeChronicleMap, initGraphScene, changeCurrentFeature, changeCurrentTimeStamp, initWorldMap, changeWorldMapHeaviestContributor, changeWorldMapHeavyContributor, addTextCategorySelected, changeTextVisualization, removeAllTextCategories, changeOsmUsersDataStats } from '../actions';
 import 'intersection-observer';
 import scrollama from 'scrollama';
 import { Intro, SectionFirst, SectionSecond, SectionThird, SectionFourth, SectionFifth, SectionOddPOIs, SectionText } from '../components/sections';
-import { HeaderContainer } from '../components';
 import _ from 'lodash';
 import interestingPOIs from '../constants/interesting_pois.json';
 import { scaleLinear } from 'd3';
+import axios from 'axios';
 
 const Fragment = React.Fragment;
 
@@ -72,24 +70,32 @@ class Home extends Component {
     document.body.style.overflowY = "hidden";
   }
 
+  loadData(){
+    axios.all([axios.get('https://nkosm.s3.amazonaws.com/summaries.json')])
+    .then(axios.spread((response) => {
+      if (response.data.success) {
+        this.props.dispatch(changeOsmUsersDataStats(response.data));
+      }
+    }));
+  }
+
   componentDidUpdate(prevProps, prevState){
     if (prevProps.mapLoaded !== this.props.mapLoaded && this.props.mapLoaded) {
 
+    this.loadData();
 
-        this.scroller = scrollama();
-        this.scroller.setup({
-          step: '.trigger',
-          container: '.scroll-container',
-          offset: 0.8,
-          order: true,
-          progress: true
-        })
-          .onStepEnter(this.handleStepEnter.bind(this))
-          .onStepProgress(_.throttle(this.handleStepProgress.bind(this), 250))
-          .onStepExit(this.handleStepExit.bind(this));
-      _.delay(() => {
-        window.scroll(0, 0);
-      }, 400);
+    this.scroller = scrollama();
+    this.scroller.setup({
+      step: '.trigger',
+      container: '.scroll-container',
+      offset: 0.8,
+      order: true,
+      progress: true
+    })
+      .onStepEnter(this.handleStepEnter.bind(this))
+      .onStepProgress(_.throttle(this.handleStepProgress.bind(this), 250))
+      .onStepExit(this.handleStepExit.bind(this));
+
       
 
       document.body.style.overflowY = "auto";
@@ -296,7 +302,7 @@ class Home extends Component {
   }
 
   render() {
-    let { currentFeature, selectedOsmUserResponse } = this.props;
+    let {  selectedOsmUserResponse } = this.props;
 
     return (
       <Fragment>

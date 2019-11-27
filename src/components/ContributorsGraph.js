@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import mixins from '../stylesheets/mixins';
 import {changeWorldMapIndividual } from '../actions';
 import {KoreanLegend, IndividualInfo, NumberContributionLegend} from './';
-import {SectionContainer, Box, Sticky} from '../stylesheets/components';
-import osm_stats from '../constants/osm_users.json';
+// import {SectionContainer, Box, Sticky} from '../stylesheets/components';
+// import osm_stats from '../constants/osm_users.json';
 import * as d3 from 'd3';
 import { numberWithDelimiter } from '../utils';
 import _ from 'lodash';
+import axios from 'axios';
 
 const ContributorsGraphBox = styled.div`
   background-color: white;
@@ -16,6 +17,10 @@ const ContributorsGraphBox = styled.div`
   width: 80%;
   margin: 0 auto;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 20px);
+  }
 `;
 
 const Title = styled.div`
@@ -25,6 +30,10 @@ const Title = styled.div`
   top: 20px;
   color: black;
   font-size: 0.9em;
+
+  @media (max-width: 768px) {
+    width: fit-content;
+  }
 
   div.disclaimer {
     ${mixins.LABEL_ITALIC_TYPE}
@@ -89,9 +98,8 @@ const ToolTipValue = styled.div`
 class ContributorsGraph extends Component {
   constructor(props){
     super(props);
-    this.osmUsersData = osm_stats.stats.osm_users;
-    this.xScale = d3.scaleLog()
-      .domain(d3.extent(this.osmUsersData, d => d.all_count));
+    // this.osmUsersData = osm_stats.stats.osm_users;
+
 
     this.margin = {
       top: 30, 
@@ -122,13 +130,13 @@ class ContributorsGraph extends Component {
 
   initSimulation(props){
 
-    var simulation = d3.forceSimulation(this.osmUsersData)
+    var simulation = d3.forceSimulation(this.props.osmUsersDataStats.stats.osm_users)
       .force("x", d3.forceX(d => { return this.xScale(d.all_count); }).strength(1))
       .force("y", d3.forceY(props.height / 2 - 20))
       .force("collide", d3.forceCollide(props.padding))
       .stop();
 
-    for (var i = 0; i < 200; ++i) simulation.tick();
+    for (var i = 0; i < 400; ++i) simulation.tick();
   }
   
   d3Init(){
@@ -152,10 +160,9 @@ class ContributorsGraph extends Component {
       .call(this.xAxisFunction);
 
     var _this = this;
-
     this.circleGraph = svg.append("g")
       .selectAll("circle")
-      .data(this.osmUsersData)
+      .data(this.props.osmUsersDataStats.stats.osm_users)
       .enter().append("circle")
       .attr("fill", d => { return this.colorScale(d.all_count) })
       .attr("stroke", "#eee")
@@ -229,10 +236,6 @@ class ContributorsGraph extends Component {
       .attr("cy", d => d.y)
   }
 
-  componentDidMount() {
-    this.d3Init();
-  }
-
   setCircleColor(props, d) {
     let { graphMode, choloplethMode, cholopleth, currentIndividual } = props;
 
@@ -266,59 +269,78 @@ class ContributorsGraph extends Component {
 
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
     let { graphMode, choloplethMode, cholopleth, currentIndividual } = this.props;
+   
+    if (prevProps.osmUsersDataStats !== this.props.osmUsersDataStats) {
 
-    if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
-      this.d3Update();
-      console.log("d3update called");
-    }
-    
-    if (cholopleth) {
-      graphMode = choloplethMode;
-    }
-    
-    if (!_.isNull(currentIndividual) && !_.isUndefined(currentIndividual)) {
+      if (!_.isNull(this.props.osmUsersDataStats)) {
+        this.xScale = d3.scaleLog()
+          .domain(d3.extent(this.props.osmUsersDataStats.stats.osm_users, d => d.all_count));
+        this.d3Init();
 
-      this.circleGraph.transition().attr("fill", d => {
-
-        if (d.id === currentIndividual.id) {
-        
-          return "#FF0000";
-        
-        } else {
-
-          return "#DDD";
-        
-        }
-
-      })
-
-    } else {
-      //top20, top5
-      if (graphMode === "korean") {
-
-        this.circleGraph.transition().attr("fill", d => {
-          return d.korean ? "#FF0000" : "#DDD";
-        })
-
-      } else if (graphMode === "all") {
-        this.circleGraph.transition().attr("fill", d => {
-          return this.colorScale(d.all_count)
-        });
-
-      } else if (graphMode === "top20") {
-        
-        this.circleGraph.transition().attr("fill", d => {
-          return d.rank > 0 && d.rank <= 20 ? "#253494" : "#DDD"; // this.colorScale(d.all_count)
-        })
-
-      } else if (graphMode === "top5") {
-        this.circleGraph.transition().attr("fill", d => {
-          return d.rank > 0 && d.rank <= 5 ? "#253494" : "#DDD";
-        }) //this.colorScale(d.all_count)
       }
+      
     }
+   
+    if (!_.isNull(this.props.osmUsersDataStats)){
+
+      if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
+        this.d3Update();
+        console.log("d3update called");
+      }
+      
+      if (cholopleth) {
+        graphMode = choloplethMode;
+      }
+      
+      if (!_.isUndefined(this.circleGraph)) {
+
+        if (!_.isNull(currentIndividual) && !_.isUndefined(currentIndividual)) {
+  
+          this.circleGraph.transition().attr("fill", d => {
+    
+            if (d.id === currentIndividual.id) {
+            
+              return "#FF0000";
+            
+            } else {
+    
+              return "#DDD";
+            
+            }
+    
+          })
+    
+        } else {
+          //top20, top5
+          if (graphMode === "korean") {
+    
+            this.circleGraph.transition().attr("fill", d => {
+              return d.korean ? "#FF0000" : "#DDD";
+            })
+    
+          } else if (graphMode === "all") {
+            this.circleGraph.transition().attr("fill", d => {
+              return this.colorScale(d.all_count)
+            });
+    
+          } else if (graphMode === "top20") {
+            
+            this.circleGraph.transition().attr("fill", d => {
+              return d.rank > 0 && d.rank <= 20 ? "#253494" : "#DDD"; // this.colorScale(d.all_count)
+            })
+    
+          } else if (graphMode === "top5") {
+            this.circleGraph.transition().attr("fill", d => {
+              return d.rank > 0 && d.rank <= 5 ? "#253494" : "#DDD";
+            }) //this.colorScale(d.all_count)
+          }
+        }
+      }
+      
+    }
+    
   }
 
   render() {
@@ -396,6 +418,7 @@ let mapStateToProps = state => {
     return {
       graphMode: state.graphMode,
       choloplethMode: state.choloplethMode,
+      osmUsersDataStats: state.osmUsersDataStats,
       cholopleth: state.cholopleth,
       currentIndividual: state.currentIndividual
     }

@@ -7,7 +7,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 const InterestingPOIsContainer = styled(SectionContainer)`
-  margin: 100px 0;
+  margin:0;
 `;
 
 const POIBox = styled.div`
@@ -24,6 +24,11 @@ const POIBox = styled.div`
   display:flex;
   justify-content: space-between;
   width: 400px;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
+
 `;
 
 const TitleArea = styled.div`

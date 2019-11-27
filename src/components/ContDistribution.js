@@ -74,10 +74,10 @@ class ContDistribution extends Component {
         .enter().append("text")
           .attr("fill", "#AAAAAA")
           .style("font-size", "0.6em")
-          .attr("text-anchor", d => { return d == 60 ? "end" : "middle" })
+          .attr("text-anchor", d => { return d === 60 ? "end" : "middle" })
           .attr("x", d => { return this.xScale(d) })
           .attr("y", -2)
-          .text(d => { return d == 0.0 ? "0" : `${numberWithDelimiter(d / 1000)}K` });
+          .text(d => { return d === 0.0 ? "0" : `${numberWithDelimiter(d / 1000)}K` });
 
       xAxis.selectAll("text")
           .data(HIST)

@@ -11,6 +11,14 @@ const GridBox = styled.div`
   column-gap: 5px;
   /* height: 2000px; */
   width: calc(100% - 10px);
+
+
+  @media (max-width: 768px) {
+
+    column-count: 10;
+    column-gap: 1px;
+  }
+
 `;
 
 const Main = styled.div`
@@ -22,6 +30,17 @@ const Main = styled.div`
   transition: 0.4s opacity;
   width: calc(100% - 180px);
   /* top: 20px; */
+  
+  @media (max-width: 768px) {
+
+    margin-left: 5px;
+    top: 10px;
+    width: 100%;
+    height: calc(100vh - 15px);
+    overflow: hidden;
+  }
+  
+
   /* padding-top: 9px; */
 `;
 

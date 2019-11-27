@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMapLoaded, changeCurrentSeq } from '../actions';
-import { LayerGenerator } from './';
-import { dispatchToGlobal, numberWithDelimiter, randomBetween } from '../utils';
+import { numberWithDelimiter } from '../utils';
 import * as d3 from 'd3';
 import _ from 'lodash';
 
@@ -63,7 +61,7 @@ class MapContainer extends Component {
 
       if (_.isNull(this.props.currentFeature)) {
         this.updateCurrentFeature(currentFeature);
-      } else if (currentFeature.osm_id != this.props.currentFeature.osm_id) {
+      } else if (currentFeature.osm_id !== this.props.currentFeature.osm_id) {
         this.updateCurrentFeature(currentFeature);
       }
     }
@@ -142,7 +140,6 @@ class MapContainer extends Component {
 
   render() {
     let { currentFeature } = this.props;
-    let width = 300;
     let colorScale = d3.scaleLinear()
       .range(["#ffffcc",
               "#d6efc2",

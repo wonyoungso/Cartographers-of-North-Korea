@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export const DEFAULT_STATE = {
   windowWidth: 1024,
   windowHeight: 768,
@@ -18,6 +16,7 @@ export const DEFAULT_STATE = {
   choloplethMode: "all", //top20, top5, individual
   currentIndividual: null,
   osmUsers: [],
+  osmUsersDataStats: null,
   responseCategories: [],
   osmUserHistories: null,
   osmUserHistoriesIdx: 0,

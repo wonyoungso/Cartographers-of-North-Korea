@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { windowResize } from './actions';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 
 import MapProgress from './pages/MapProgress';
 import Pois from './pages/Pois';
 import Interviews from './pages/Interviews';
+=======
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './pages/Home';
+// import SummaryPage from './pages/SummaryPage';
+>>>>>>> c6d79e4b256ef22e66437c584bffb38cdb66c48e
 
 const Fragment = React.Fragment;
 

@@ -7,6 +7,15 @@ export const reset = () => {
   }
 }
 
+export const changeOsmUsersDataStats = (osmUsersDataStats) => {
+  return {
+    type: 'CHANGE_OSM_USERS_DATA_STATS',
+    payload: {
+      osmUsersDataStats: osmUsersDataStats
+    }
+  }
+}
+
 export const removeAllTextCategories = () => {
   return {
     type: "REMOVE_ALL_TEXT_CATEGORIES",

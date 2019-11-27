@@ -153,7 +153,7 @@ class PageMapContainer extends Component {
    
     if (!_.isNull(currentFeature)){
       
-      if (currentSeq != this.props.currentSeq) {
+      if (currentSeq !== this.props.currentSeq) {
          console.log(currentFeature, "newProps.currentseq: ", currentSeq, "this.props.currentSeq:", this.props.currentSeq);
         console.log("will do transition");
         this.updateCurrentFeature(currentFeature);
@@ -168,7 +168,7 @@ class PageMapContainer extends Component {
 
       }
     } 
-    if (currentTimeStamp != this.props.currentTimeStamp) {
+    if (currentTimeStamp !== this.props.currentTimeStamp) {
       this.map.setFilter('nk-line-layer', ["<", "t", currentTimeStamp]);
       this.map.setFilter('nk-polygon-layer', ["<", "t", currentTimeStamp]);
       this.map.setFilter('nk-point-layer', ["<", "t", currentTimeStamp]);  

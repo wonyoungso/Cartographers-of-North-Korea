@@ -18,6 +18,10 @@ const TitleContainer = styled.div`
   width: 600px;
   margin: 0 auto;
   padding-top: 120px;
+
+  @media (max-width: 768px) {
+    width:100%;
+  }
 `;
 
 const H1 = styled.h1`
@@ -26,6 +30,10 @@ const H1 = styled.h1`
   font-size:2.5em;
   line-height: 1.2;
   margin: 10px 0;
+
+  @media (max-width: 768px) {
+    font-size:2.0em;
+  }
 `;
 
 const SubParagraph = styled.p`
@@ -34,6 +42,11 @@ const SubParagraph = styled.p`
   font-size:1.5em;
   line-height: 1.35;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    font-size:1.0em;
+  }
+
 `;
 
 const DateBox = styled.div`

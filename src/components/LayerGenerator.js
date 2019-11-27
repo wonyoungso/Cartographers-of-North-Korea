@@ -1,4 +1,4 @@
-import { scaleLinear, scaleLog, interpolateRgb, interpolateHsl } from 'd3';
+import { scaleLinear } from 'd3';
 
 class LayerGenerator {
   constructor(params){
@@ -14,14 +14,14 @@ class LayerGenerator {
   }
 
   getPaintProperty(color) {
-    if (this.type == "circle"){
+    if (this.type === "circle"){
 
       return {
         "circle-radius": 1.5,
         "circle-color": color
       };
 
-    } else if (this.type == "line") {
+    } else if (this.type === "line") {
 
       return {
         "line-color": color,
@@ -29,7 +29,7 @@ class LayerGenerator {
         "line-opacity": 0.2
       };
 
-    } else if (this.type == "fill") {
+    } else if (this.type === "fill") {
 
       return {
         'fill-color': color,
@@ -41,7 +41,7 @@ class LayerGenerator {
 
   getLayers(){
 
-    if (this.layers.length == 0){
+    if (this.layers.length === 0){
 
       this.layers = [];
       this.scale = scaleLinear()

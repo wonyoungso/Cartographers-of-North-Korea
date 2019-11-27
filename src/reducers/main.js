@@ -9,10 +9,18 @@ export default function screenReducer(state = DEFAULT_STATE, action){
         windowWidth: action.payload.windowWidth,
         windowHeight: action.payload.windowHeight
       }
+<<<<<<< HEAD
     case 'CHANGE_TIMELINE_UI':
       return {
         ...state,
         timelineUI: action.payload.timelineUI
+=======
+
+    case 'CHANGE_OSM_USERS_DATA_STATS':
+      return {
+        ...state,
+        osmUsersDataStats: action.payload.osmUsersDataStats
+>>>>>>> c6d79e4b256ef22e66437c584bffb38cdb66c48e
       }
     case 'CHANGE_OSM_USER_HISTORIES_IDX':
       return {
