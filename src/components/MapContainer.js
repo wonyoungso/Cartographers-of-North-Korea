@@ -42,17 +42,17 @@ class MapContainer extends Component {
   
     this.map.addSource('nk-line', {
       type: 'vector',
-      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_line/{z}/{x}/{y}.pbf']
+      tiles: ['https://tilesnew.wonyoung.so/services/vector-tiles/nk_osm_line/{z}/{x}/{y}.pbf']
     })
 
     this.map.addSource('nk-polygon', {
       type: 'vector',
-      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_polygon/{z}/{x}/{y}.pbf']
+      tiles: ['https://tilesnew.wonyoung.so/services/vector-tiles/nk_osm_polygon/{z}/{x}/{y}.pbf']
     })
   
     this.map.addSource('nk-point', {
       type: 'vector',
-      tiles: ['https://tiles.wonyoung.so/services/vector-tiles/nk_osm_point/{z}/{x}/{y}.pbf;']
+      tiles: ['https://tilesnew.wonyoung.so/services/vector-tiles/nk_osm_point/{z}/{x}/{y}.pbf;']
     })
     
     this.map.addLayer({
